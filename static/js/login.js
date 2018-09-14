@@ -1,15 +1,14 @@
 var loginType = 2;
 var storePwd = '';
 //console.log(sessionStorage.getItem("storeId"))
-
+//判断门店是否登陆过-session storage
 if (sessionStorage.getItem("storeId") != null) {
     $('.lo_store').hide();
     $('.lo_employee').show();
     $('.lo_title').find('font').text('员工登录')
     $('.lo_title').find('span').show();
 }
-
-
+//判断是密码还是验证码
 $('.lo_way span').on('click', function () {
     $(this).addClass('bg-blue').siblings().removeClass('bg-blue');
     $('.lo_pwd1').removeClass('active');
@@ -24,11 +23,8 @@ $('.lo_way span').on('click', function () {
 })
 
 //门店注销 
-
 $('.back_btn').on('click', function (e) {
-
     e.preventDefault()
-
     $.ajax({
         type: "get",
         url: turl + "/cashier/login/storeLogout",
@@ -38,7 +34,9 @@ $('.back_btn').on('click', function (e) {
         crossDomain: false,
         success: function (rs) {
             if (rs.status == 200) {
-                layer.msg('注销成功', {time: 1000})
+                layer.msg('注销成功', {
+                    time: 1000
+                })
                 $('#signlogStore').removeAttr('disabled');
                 $("#phone").val('')
                 $("#storePwd1").val('')
@@ -88,55 +86,59 @@ function signlogStore() {
         layer.msg("请输入有效的手机号！");
         return false;
     }
-
-
     $.ajax({
-        type: "get",
-        url: turl + "/cashier/login/storeLogin",
+        type: "POST",
+        url: turl + "/auth/store/login",
         data: data,
-        xhrFields: {
-            withCredentials: true
-        },
+        // xhrFields: {
+        //     withCredentials: true
+        // },
         crossDomain: false,
         success: function (rs) {
-
             if (rs.status == 200) {
+                console.log(rs.data);
                 sessionStorage.setItem("offLine", rs.data);
-                $('#signlogStore').attr({'disabled': "disabled"});
-                layer.confirm('门店登录成功，是否同步数据',
-                    {
-                        btn: ['同步', '否'],
-                        closeBtn: 0
-                    }, function () {
-                        inStepData(phone);
-                    }, function () {
-                        layer.closeAll();
-                        sessionStorage.setItem("storeId", phone);
-                        $('.lo_title').find('font').text('员工登录')
-                        $('.lo_store').hide();
-                        $('.lo_employee').show();
-                        $('.lo_title').find('span').show();
-                    })
+                $('#signlogStore').attr({
+                    'disabled': "disabled"
+                });
+                layer.confirm('门店登录成功，是否同步数据', {
+                    btn: ['同步', '否'],
+                    closeBtn: 0
+                }, function () {
+                    inStepData(phone);
+                }, function () {
+                    layer.closeAll();
+                    sessionStorage.setItem("storeId", phone);
+                    $('.lo_title').find('font').text('员工登录')
+                    $('.lo_store').hide();
+                    $('.lo_employee').show();
+                    $('.lo_title').find('span').show();
+                })
 
             } else if (rs.status == 201) {
                 sessionStorage.setItem("offLine", "null");
-                layer.msg(rs.message, {time: 1000});
+                layer.msg(rs.message, {
+                    time: 1000
+                });
                 $('.lo_title').find('font').text('员工登录')
                 $('.lo_store').hide();
                 $('.lo_employee').show();
                 $('.lo_title').find('span').show();
             } else if (rs.status == 301) {
                 $('.updateSystem').show();
-                layer.msg('请点击更新系统按钮，更新系统', {time: 2000});
-            }
-            else {
-                layer.msg(rs.message, {time: 1000});
+                layer.msg('请点击更新系统按钮，更新系统', {
+                    time: 2000
+                });
+            } else {
+                layer.msg(rs.message, {
+                    time: 1000
+                });
             }
 
         }
     });
 }
-
+//同步数据
 function inStepData(phone) {
     layer.config({
         offset: ['50%', '50%']
@@ -153,7 +155,9 @@ function inStepData(phone) {
             if (rs.status == "200") {
                 layer.close(index);
                 sessionStorage.setItem("storeId", phone);
-                layer.msg(rs.message, {time: 1000}, function () {
+                layer.msg(rs.message, {
+                    time: 1000
+                }, function () {
                     $('.lo_title').find('font').text('员工登录')
                     $('.lo_store').hide();
                     $('.lo_employee').show();
@@ -161,7 +165,9 @@ function inStepData(phone) {
                 });
 
             } else {
-                layer.msg(rs.message, {time: 1000});
+                layer.msg(rs.message, {
+                    time: 1000
+                });
                 $('#signlogStore').removeAttr('disabled');
                 layer.close(index);
             }
@@ -169,7 +175,7 @@ function inStepData(phone) {
     })
 }
 
-// 修复员工 
+// 修复员工 /注销员工
 $('.repair_btn').on('click', function (e) {
     e.preventDefault()
     var username = $("#names").val();
@@ -190,9 +196,13 @@ $('.repair_btn').on('click', function (e) {
         crossDomain: true,
         success: function (rs) {
             if (rs.status == "200") {
-                layer.msg(rs.message, {time: 1000});
+                layer.msg(rs.message, {
+                    time: 1000
+                });
             } else {
-                layer.msg(rs.message, {time: 1000});
+                layer.msg(rs.message, {
+                    time: 1000
+                });
             }
             console.log(rs.data);
         }
@@ -201,9 +211,7 @@ $('.repair_btn').on('click', function (e) {
 })
 
 //员工登录
-
 function signlog() {
-
     var username = $("#names").val();
     var pwd = $("#pwds").val();
     if (username == "" || pwd == "") {
@@ -228,15 +236,17 @@ function signlog() {
             if (rs.status == "200") {
                 layer.msg('登录成功');
                 sessionStorage.setItem("name", rs.data.name);
-
                 setTimeout(function () {
                     window.location.href = "longinState.html";
                 }, 2000);
-
             } else if (rs.status == 302) {
-                layer.msg(rs.message, {time: 1000});
+                layer.msg(rs.message, {
+                    time: 1000
+                });
             } else {
-                layer.msg(rs.message, {time: 1000});
+                layer.msg(rs.message, {
+                    time: 1000
+                });
             }
             //console.log(rs.message);
             //layer.msg(rs.msg);
@@ -244,9 +254,7 @@ function signlog() {
     })
 }
 
-
 // 更新系统
-
 $('.update_btn').on('click', function () {
     var index = layer.load(3);
     $('.loading').show();
@@ -276,8 +284,3 @@ $('.update_btn').on('click', function () {
 
     //window.open(turl + '/cashier-reboot/reboot.do')
 })
-
-
-
-
-
