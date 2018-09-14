@@ -56,7 +56,6 @@ $('.back_btn').on('click', function (e) {
 
 // 门店登录 
 function signlogStore() {
-
     var phone = $("#phone").val();
     var data;
     var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
@@ -222,7 +221,7 @@ function signlog() {
         offset: ['50%', '60%']
     })
     $.ajax({
-        type: "get",
+        type: "POST",
         url: turl + "/cashier/login/login",
         data: {
             "username": username,

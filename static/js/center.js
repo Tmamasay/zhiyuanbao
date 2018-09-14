@@ -1,58 +1,59 @@
 /*接口*/
 // var turl = "http://192.168.0.133:8080";
 //var turl = "http://120.79.90.220:8080";
-var turl = "http://127.0.0.1:8080";
+// var turl = "http://127.0.0.1:8080";http://192.168.0.51:8888
+var turl = "http://192.168.0.51:8888";
 
 /*接口api*/
 
 
 var getUser = turl + "/cashier/cashier/getUser"; // 获取会员信息
 var getGoods = turl + "/cashier/cashier/getGoods"; // 获取商品信息
-var payByCash = turl + "/cashier/cashier/payByCash";  // 现金支付
-var payByScan = turl + "/cashier/cashier/payByScan";  // 扫码支付
+var payByCash = turl + "/cashier/cashier/payByCash"; // 现金支付
+var payByScan = turl + "/cashier/cashier/payByScan"; // 扫码支付
 
 var saveHangOrder = turl + "/cashier/hangOrder/saveHangOrder"; // 保存挂单
-var getLoginEmployee = turl + "/cashier/login/getLoginEmployee";   //获取当前登录员工
-var updateStatus = turl + "/cashier/login/updateStatus";   //上传员工 当班状态
-var getCheckOut = turl + "/cashier/login/getCheckOut";//下班时获取收银详情
-var logout = turl + "/cashier/login/logout";  // 下班
-var authorize = turl + "/cashier/login/authorize";  // 下班授权
+var getLoginEmployee = turl + "/cashier/login/getLoginEmployee"; //获取当前登录员工
+var updateStatus = turl + "/cashier/login/updateStatus"; //上传员工 当班状态
+var getCheckOut = turl + "/cashier/login/getCheckOut"; //下班时获取收银详情
+var logout = turl + "/cashier/login/logout"; // 下班
+var authorize = turl + "/cashier/login/authorize"; // 下班授权
 
-var findOrderDetail = turl + "/cashier/order/findOrderDetail";   // 查询订单详情
-var findPage = turl + "/cashier/order/findPage";   // 查询订单详情
+var findOrderDetail = turl + "/cashier/order/findOrderDetail"; // 查询订单详情
+var findPage = turl + "/cashier/order/findPage"; // 查询订单详情
 var deleteOrder = turl + "/cashier/order/delete"; //删除订单
-var getHangOrderList = turl + "/cashier/hangOrder/getHangOrderList";   //获取挂单数据
-var removeHangOrder = turl + "/cashier/hangOrder/removeHangOrder";   //删除挂单数据
+var getHangOrderList = turl + "/cashier/hangOrder/getHangOrderList"; //获取挂单数据
+var removeHangOrder = turl + "/cashier/hangOrder/removeHangOrder"; //删除挂单数据
 
 
 var getIntegralGoods = turl + "/cashier/integralCashier/getIntegralGoods"; // 积分获取商品信息
 
-var payIntegralOrder = turl + "/cashier/integralCashier/payIntegralOrder";  // 积分支付
-var checkPassword = turl + "/cashier/integralCashier/checkPassword";  // 校验账户密码
+var payIntegralOrder = turl + "/cashier/integralCashier/payIntegralOrder"; // 积分支付
+var checkPassword = turl + "/cashier/integralCashier/checkPassword"; // 校验账户密码
 
-var findIntegralOrderPage = turl + "/cashier/integralOrder/findPage";  // 获取积分订单列表
-var findIntegralOrderDetail = turl + "/cashier/integralOrder/findOrderDetail";  // 获取积分订单详情
+var findIntegralOrderPage = turl + "/cashier/integralOrder/findPage"; // 获取积分订单列表
+var findIntegralOrderDetail = turl + "/cashier/integralOrder/findOrderDetail"; // 获取积分订单详情
 
 // 超市
-var findReturnOrder = turl + "/cashier/return/findOrder";  // 获取退货订单
-var batchReturn = turl + "/cashier/return/batchReturn";  // 批量退货
+var findReturnOrder = turl + "/cashier/return/findOrder"; // 获取退货订单
+var batchReturn = turl + "/cashier/return/batchReturn"; // 批量退货
 
 // 积分
-var findIntegralOrder = turl + "/cashier/integralReturn/findIntegralOrder";  // 获取积分退货订单
-var integralReturn = turl + "/cashier/integralReturn/batchReturn";  // 积分批量退货
+var findIntegralOrder = turl + "/cashier/integralReturn/findIntegralOrder"; // 获取积分退货订单
+var integralReturn = turl + "/cashier/integralReturn/batchReturn"; // 积分批量退货
 
 
 var saveHangIntegralOrder = turl + "/cashier/hangIntegralOrder/saveHangIntegralOrder"; // 积分保存挂单
-var getHangIntegralOrderList = turl + "/cashier/hangIntegralOrder/getHangIntegralOrderList";   //获取积分挂单数据
-var removeHangIntegralOrder = turl + "/cashier/hangIntegralOrder/removeHangIntegralOrder";   //删除积分挂单数据
+var getHangIntegralOrderList = turl + "/cashier/hangIntegralOrder/getHangIntegralOrderList"; //获取积分挂单数据
+var removeHangIntegralOrder = turl + "/cashier/hangIntegralOrder/removeHangIntegralOrder"; //删除积分挂单数据
 
 
-var printWc = turl + "/cashier/print/wc";   //打印网超小票
-var printIntegral = turl + "/cashier/print/integral";   //打印积分小票
+var printWc = turl + "/cashier/print/wc"; //打印网超小票
+var printIntegral = turl + "/cashier/print/integral"; //打印积分小票
 
 
 //获取当前登录的 门店账号‘
-var getLoginStore = turl + "/cashier/login/getLoginStore";   //打印积分小票
+var getLoginStore = turl + "/cashier/login/getLoginStore"; //打印积分小票
 
 
 function queryMenberIFFnfo(token, callback) {
@@ -143,8 +144,3 @@ function remove(arr, item) {
         }
     }
 }
-
-
-
-
-
