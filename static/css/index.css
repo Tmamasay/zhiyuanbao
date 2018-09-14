@@ -1,0 +1,749 @@
+/*加载效果背景*/
+
+.layui-layer-shade {
+	background: rgba(0, 0, 0,0.5)!important;
+}
+.layui-layer-title{
+	background: #3185ff !important;
+	color: #fff !important;
+	text-align: center;
+}
+.layui-btn-danger{
+	background: red;
+}
+
+
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+
+::-webkit-scrollbar {
+	width: 0px;
+	height: 0px;
+	background-color: #18a1ff;
+}
+
+
+/*定义滚动条轨道 内阴影+圆角*/
+
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background-color: #fff;
+}
+
+
+/*定义滑块 内阴影+圆角*/
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, .3);
+	background-color: #18a1ff;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.6;
+}
+
+.ml-none{
+	margin-left: 0 !important;
+}
+
+.container-layout{
+	width: 100%;
+	height: 100%;
+}
+
+/*左边块内容*/
+
+.left-nav{
+	width: 6.25%;
+	height: 100%;
+}
+
+.tb_left {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	top: 0px;
+	overflow-x: hidden;
+}
+
+.tb_left ul{
+	display: flex;
+	height: 100%;
+	flex-flow: wrap;
+}
+.tb_left ul li{
+	width: 100%;
+	height: calc(100% / 6);
+	min-height: 110px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+	color: #8f9090;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+
+.tb_left ul li.active{
+	background-color:#3185ff ;
+	color: #fff;
+}
+
+
+.tb_left ul li.integral.active{
+	background:#643cbc ;
+	color: #fff;
+}
+
+
+.tb_left ul li span{
+	display: inline-block;
+	width: 31px;
+	height:31px;
+}
+
+.tb_left ul li font{
+	display: inline-block;
+	padding-top: 10px;
+}
+
+
+.tb_left .icon01{
+	background: url(../img/nav-icon01.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .active .icon01 {
+	background: url(../img/nav-ac-icon01.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.tb_left .integral .icon01 {
+	background: url(../img/integral-icon01.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .integral.active .icon01 {
+	background: url(../img/nav-ac-icon01.png) no-repeat;
+	background-size: 100% 100%;
+
+}
+.tb_left .icon02{
+	background: url(../img/nav-icon02.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .active .icon02 {
+	background: url(../img/nav-ac-icon02.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .integral .icon02 {
+	background: url(../img/integral-icon02.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .integral.active .icon02 {
+	background: url(../img/nav-ac-icon02.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.tb_left .icon03{
+	background: url(../img/nav-icon03.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .active .icon03 {
+	background: url(../img/nav-ac-icon03.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .integral .icon03 {
+	background: url(../img/integral-icon03.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .integral.active .icon03 {
+	background: url(../img/nav-ac-icon03.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.tb_left .icon04{
+	background: url(../img/nav-icon04.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .active .icon04 {
+	background: url(../img/nav-ac-icon04.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .integral .icon04 {
+	background: url(../img/integral-icon04.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .integral.active .icon04 {
+	background: url(../img/nav-ac-icon04.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.tb_left .icon05{
+	background: url(../img/nav-icon05.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .active .icon05 {
+	background: url(../img/nav-ac-icon05.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .integral .icon05 {
+	background: url(../img/integral-icon05.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.tb_left .integral.active .icon05 {
+	background: url(../img/nav-ac-icon05.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .icon06{
+	background: url(../img/nav-icon06.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.tb_left .active .icon06 {
+	background: url(../img/nav-ac-icon06.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tb_left .integral .icon06 {
+	background: url(../img/integral-icon06.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.tb_left .integral.active .icon06 {
+	background: url(../img/nav-ac-icon06.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.tb_left .icon07{
+	background: url(../img/nav-icon07.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.tb_left .integral .icon07 {
+	background: url(../img/nav-integral-icon.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+#changeSystem {
+	background: white;
+	color: #8f9090;
+}
+
+/*右边块内容*/
+
+.tb_right {
+	width: calc(100% - 6.25%);
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	top: 0px;
+	overflow: auto;
+	background: #f5f7ff;
+	min-height: 400px;
+	cursor: pointer;
+}
+
+.loading{
+	width: 100%;
+	height: 100%;
+	background: white;
+	width: calc(100% - 6.25%);
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	top: 0px;
+	z-index: 2;
+	background: #f8f8f8;
+}
+
+
+/* 首页模块 */
+.home_bg{
+	width: 100%;
+	height: 100%;
+	background: url(../img/home-bg.png) no-repeat;
+	background-size: 100% 100%;
+	position: relative;
+}
+
+.home_bg.active{
+	background: url(../img/home-bg02.png) no-repeat;
+}
+
+.time_module{
+	color: #fff;
+	position: absolute;
+	right: 32px;
+	top: 32px;
+	width: 150px;
+}
+
+.time_module .day{
+	font-size: 48px;
+	display: block;
+	float: left;
+
+}
+.time_module p{
+	font-size: 14px;
+	padding: 0;
+	float: left;
+	margin-left: 10px;
+	line-height: 18px;
+	padding-top: 10px;
+}
+.time_module p span{
+	display: block;
+	
+}
+
+.time_module p span:last-child{
+	letter-spacing: 2px;
+}
+
+.ChangeSystem{
+	position: absolute;
+	right: 32px;
+	bottom: 32px;
+	width: 150px;
+}
+
+
+/* 主体 */
+
+.warp {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+
+/* 收银模块 */
+
+.cashier{
+	height: 100%;
+	overflow: hidden;
+}
+
+.cashier .left{
+	width: 35%;
+	height: 100%;
+	float: left;
+	background: white;
+	margin-left: 2px;;
+	position: relative;
+}
+
+
+
+.cashier .memberLogin{
+	text-align: center;
+}
+.memberLogin h5{
+	font-size: 36px;
+	color: #000;
+	display: inline-block;
+	padding: 55px 0;
+	position: relative;
+}
+
+.memberLogin h5:before{
+	content: '';
+	clear: both;
+	width: 34px;
+	height: 33px;
+	position: absolute;
+	right: -45px;
+	top: 65px;
+	background: url(../img/icons-01.png) no-repeat;
+	background-size: auto;
+}
+
+.memberLogin .ScanCodeinput{
+	display:block;
+	width: 100%;
+	padding: 40px 20px;
+	position: relative;
+}
+
+
+.memberLogin .memberInfo{
+	padding: 30px 10px;
+}
+.memberLogin .memberInfo ul li{
+	display: inline-block;
+	width:49%;
+	text-align: left;
+	padding: 5px 0;
+}
+
+.shopGoodslist{
+	max-height: 450px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.shopGoodslist .shopGoodsTop h5{
+	width: 100%;
+	font-size: 16px;
+	color: #000;
+	font-weight: 600;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.shopGoodslist .shopGoodsCT{
+	display: table;
+	width: 100%;
+}
+.shopGoodslist .shopGoodsCT .shopGoodPrice{
+	display: table-cell;
+	width: 65%;
+	text-align: left;
+}
+.shopGoodslist .shopGoodsCT .shopGoodPrice p{
+	display: inline-block;
+	font-size: 16px;
+}
+
+.shopGoodslist .shopGoodsCT .price{
+	font-size: 20px;
+	color: #4786ff;
+}
+
+.shopGoodslist .shopGoodsCT div{
+	display: table-cell;
+	text-align: right;
+}
+
+.shopGoodslist .shopGoodsCT div .minus{
+	font-size: 24px;
+	display: inline-block;
+	width: 33px;
+	height: 33px;
+	border-radius: 50%;
+	border: 1px solid #4786ff;
+	text-align: center;
+	color: #4786ff;
+	margin-right: 10px;
+}
+
+.shopGoodslist .shopGoodsCT div .number{
+	font-size: 24px;
+	display: inline-block;
+	color: #8f9090;
+}
+
+.shopGoodslist .shopGoodsCT div .add{
+	font-size: 24px;
+	display: inline-block;
+	width: 33px;
+	height: 33px;
+	border-radius: 50%;
+	border: 1px solid #4786ff;
+	background: #4786ff;
+	text-align: center;
+	color: white;
+	margin-left: 10px;
+}
+
+
+.shopGoodsClearing{
+	width: 100%;
+	position: relative;
+	bottom: 0;
+	left: 0;
+}
+
+.shopGoodsClearings{
+	width: 100%;
+	position:absolute;
+	bottom: 0;
+	left: 0;
+}
+.shopGoodsInfo{
+	text-align: right;
+}
+.shopGoodsInfo p{
+	line-height: 32px;
+	color: #8f9090;
+}
+.shopGoodsInfo .price{
+	font-size: 24px;
+	color: #4786ff;
+}
+
+.shopGoodsBtn button{
+	border-radius: 50px;
+	width: 150px;
+	font-size: 24px;
+	font-weight: 400;
+}
+.shopGoodsBtn .button-active {
+	color: #4786ff;
+	border-color: #4786ff;
+}
+
+.cashier .right{
+	width: calc(100% - 35.5%);
+	height: 100%;
+	float: left;
+	padding-top: 30px;
+	background-color:#f8f8f8 ;
+}
+.settlementModule{
+	width: 80.0%;
+	padding-left: 10%;
+}
+
+.settlementMethod{
+	
+}
+.settlementMethod ul{}
+.settlementMethod ul li{
+	width: 50%;
+	float: left;
+	padding: 10px 0;
+	font-size: 20px;
+	text-align: center;
+	background: white;
+	color: #e0e0e0;
+}
+.settlementMethod ul li.active{
+	color: white;
+	background-color:#4786ff ;
+}
+
+.ycPrice{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.scPrice{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.scPrice div{
+	display: flex;
+	flex-flow: wrap;
+	flex-direction: column;
+	
+}
+.scPrice div:first-child{
+	width: 65%;
+}
+
+.scPrice div:last-child{
+	width: 25%;
+}
+
+.scPrice div span{
+	font-size: 20px;
+	color: #8f9090;
+}
+
+.scPrice div input {
+	font-size: 20px;
+	margin-top: 10px;
+	background: white;
+	padding: 10px 12px;
+	border: 1px solid #e0e0e0;
+}
+
+.ycPrice span{
+	font-size: 20px;
+	color: #8f9090;
+}
+.ycPrice .price {
+	font-size: 18px;
+	color: #4786ff;
+}
+
+
+.settlementKeyboard ul {
+	width: 100%;
+	
+}
+
+.settlementKeyboard ul li{
+	width: 20.5%;
+	float: left;
+	background: white;
+	text-align: center;
+	padding: 20px 0;
+	margin-top: 18px;
+	font-size: 16px;
+	margin-left: 6%;
+	cursor: pointer;
+}
+
+.settlementKeyboard ul li.bg-blue{
+	background-color:#3185ff ;
+	color: white;
+}
+.settlementKeyboard ul li.bg-purple{
+	background-color: #643cbc;
+	color: white;
+}
+
+.settlementKeyboard ul li.empty span{
+	display: inline-block;
+	background: url(../img/icons-02.jpg) no-repeat;	
+	width: 39px;
+	height: 24px;
+	background-size: 100% 100%;
+	position: relative;
+	top: 2px;
+}
+
+.clearing_btn {
+	margin-top: 40px;
+}
+.clearing_btn .button{
+	width: 100%;
+	font-size: 20px;
+	color: #3185ff;
+	padding: 20px 0;
+	border: 1px solid #3185ff;
+	background: none;
+	cursor: pointer;
+}
+
+
+/*  积分系统 */
+
+.integral-warp {
+	background: white;
+}
+
+.integral-warp .left{
+	width: 35%;
+	height: 100%;
+	float: left;
+	background: white;
+	margin-left: 2px;;
+	position: relative;
+}
+
+
+.integral-warp .memberLogin .ScanCodeinput{
+	display:block;
+	width: 100%;
+	padding: 40px 20px;
+	position: relative;
+}
+
+#paymentPanel .form-group{
+	width: 100%;
+	padding:30px 0;
+	font-size: 16px;
+}
+#paymentPanel .form-group .form-input{
+	display: inline-block;
+
+}
+
+#paymentPanel .form-group .form-input label{
+	font-size: 14px;
+	padding: 0 5px;
+}
+#paymentPanel .form-group .form-input input{
+	position: relative;
+	top: 5px;
+	width: 20px;
+	height: 20px;
+}
+
+.integral-warp .shopGoodsBtn .button-active {
+	color: #643cbc;
+	border-color: #643cbc;
+}
+.integral-warp .shopGoodsInfo .price{
+	color: #643cbc;
+}
+.integral-warp  .shopGoodslist .shopGoodsCT .shopGoodPrice p span{
+	font-size:16px;
+	color: #643cbc;
+}
+
+
+.integral-warp .shopGoodslist .shopGoodsCT div .minus{
+	border: 1px solid #643cbc;
+	color: #643cbc;
+}
+
+
+.integral-warp .shopGoodslist .shopGoodsCT div .add{
+	border: 1px solid #643cbc;
+	background: #643cbc;
+	color: white;
+
+}
+
+/*多选*/
+
+.infor_con_item_select {
+	height: auto;
+	overflow: hidden;
+	background: #FFFFFF;
+}
+
+
+.tb_list {
+	width: 100%;
+	border-bottom: solid 1px #ddd;
+	padding: 15px;
+	line-height: 45px;
+}
+
+.tb_list:last-child{
+	border-bottom:0;
+}
+
+.tb_list_left{
+	display: inline-block;
+	width: 50%;
+}
+.tb_list_left input {
+	display: inline-block;
+	position: relative;
+	top: 6px;
+	width: 25px;
+	height:25px;
+}
+
+.tb_list span {
+	display: inline-block;
+	font-size: 18px;
+	padding-left: 12px;
+
+}
+
+.scanCodeList .scanCodeBg{
+	position: relative;
+	top: 20px;
+	width: 100%;
+	overflow: hidden;
+}
+
+.scanCodeList .scanCodeBg img{
+	width: 100%;
+}
+
+
+.system_title{
+	font-size: 48px;
+	color: white;
+	display: flex;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+}

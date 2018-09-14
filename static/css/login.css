@@ -1,0 +1,273 @@
+.loginState* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.margin-big-top{
+	margin-top: 70px;
+}
+
+
+.loading{
+    width: 100%;
+    height: 100%;
+    background: white;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    z-index: 2;
+    background: #000;
+    opacity: 0.1;
+}
+
+
+/*背景图片*/
+
+.bg-img {
+    background: url(../img/bg.png) no-repeat 0 0 / 100% 100%;
+}
+
+.set_int {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    right: 10%;
+    position: relative;
+}
+
+
+/* 更新系统*/
+
+.updateSystem{
+     position: absolute;
+     bottom: 30px;
+     right: 0;
+}
+
+
+/*内容上下左右居中*/
+
+.lo_weint {
+    width: 570px;
+    height: auto;
+    background: white;
+    overflow: hidden;
+}
+
+.lo_font {
+    background: url(../img/logo-icon.png)no-repeat 0 0 / 100% auto;
+    width: 125px;;
+    height: 43px;
+    margin: 35px auto;
+    position: relative;
+}
+
+.lo_heigth {
+    background: #fff;
+    padding: 15px 75px 25px 75px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.lo_title{
+	padding: 20px 0;
+	text-align: center;
+	font-size: 16px;
+	position: relative;
+}
+
+.lo_title span{
+	position: absolute;
+	right: 0;
+	top: 20px;
+}
+
+.lo_pwd1{
+    display: none !important;
+}
+.lo_pwd.active{
+    display: flex !important;
+}
+
+.lo_name,
+.lo_pwd,
+.lo_yue {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.lo_name input,
+.lo_pwd input {
+    height: 40px;
+    font-size: 0.8rem;
+    outline: none;
+    padding-left: 40px;
+    color: #9a9a9a;
+}
+
+.lo_yue input {
+    height: 40px;
+    width: 60%;
+    font-size: 0.8rem;
+    outline: none;
+    padding-left: 40px;
+    color: #9a9a9a;
+}
+
+.lo_name span {
+    width: 30px;
+    height: 30px;
+    display: block;
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    background: url(../img/name.png) no-repeat 0 0;
+}
+
+.lo_denlu {
+    height: 40px;
+    line-height: 40px;
+}
+
+.lo_pwd input:focus,
+.lo_name input:focus,
+.lo_yue input:focus {
+    box-shadow: 0px 0px 5px #02a9ff;
+    color: #000000;
+    border-color: #02a9ff;
+}
+
+.lo_name input:focus~span {
+    background-position-y: -35px;
+}
+
+
+
+.lo_pwd span {
+    width: 30px;
+    height: 30px;
+    display: block;
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    background: url(../img/pwd.png) no-repeat 0 0;
+}
+
+.lo_pwd input:focus~span {
+    background-position-y: -37px;
+}
+
+
+.lo_pwd2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lo_pwd2 button{
+    border: none;
+    width: 125px;
+    height: 40px;
+    cursor: pointer;
+    color: #9a9a9a;
+}
+
+
+.lo_way .bg-blue{
+    color: white;
+}
+
+
+.lo_denlu a:hover {
+    color: #02a9ff;
+    cursor: pointer;
+}
+
+.lo_denlu input {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.loginState{
+    width: 100%;
+    height: 100%;
+}
+
+.loginState .top{
+    width: 100%;
+    height: 120px;
+    position: relative;
+}
+
+.top_bg{
+    background: url(../img/logbg-02.jpg) no-repeat 0 0;
+    background-size: 100% 100%;
+}
+
+
+.loginState .top .back{
+    position: relative;
+    left: 40px;
+    top: 34px;
+    width: 46px;
+    height: 46px;
+    background: url(../img/back-icon.png) no-repeat 0 0;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+.loginState .top .log{
+    position: absolute;
+    right: 450px;
+    top: 34px;
+    background: url(../img/logo-icon02.png)no-repeat 0 0 / 100% auto;
+    width: 128px;;
+    height: 43px;
+}
+
+.loginState .content{
+    position: relative;
+    top: 20%;
+}
+
+.loginState .onDuty{
+    width: 24%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginState .offDuty{
+    width: 24%;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginState .offDuty img{
+    margin-top:42px; 
+}
+
+.loginState .button{
+    margin-top:40px; 
+    width: 175px;
+    border-radius: 100px;
+    background-color: #3185ff;
+    color: white;
+    font-size: 24px;
+    padding: 15px 0;
+}
+

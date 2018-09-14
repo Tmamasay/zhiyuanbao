@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>智缘宝积分系统</title>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="../static/css/main/laypage.css" />
+		<link rel="stylesheet" href="../static/css/main/layui.css" />
+		<link rel="stylesheet" href="../static/css/main/public.css">
+		<link rel="stylesheet" href="../static/css/index.css" />
+		<script type="text/javascript" src="../lib/jquery.js"></script>
+		<script type="text/javascript" src="../lib/template.js"></script>
+		<script type="text/javascript" src="../static/js/center.js"></script>
+		<script type="text/javascript" src="../lib/modules/laydate/laydate.js"></script>
+		<script type="text/javascript" src="../lib/layui.js"></script>
+		<script language="javascript">
+			//防止页面后退
+			history.pushState(null, null, document.URL);
+			window.addEventListener('popstate', function () {
+				history.pushState(null, null, document.URL);
+			});
+		</script>
+	</head>
+
+	<body oncontextmenu="return false" onselectstart="return false" oncopy="return false">
+		<div class="container-layout">
+				<!--s:左边功能块-->
+				<div class="tb_left left-nav" id="left-nav"></div>
+				<!--e:左边功能块-->
+				<!--s:右边功能块-->
+				<div class="loading" style="display: none"></div>
+				<div class="tb_right" id="mali"></div>
+			</div>
+	</body>
+
+	<script type="text/javascript" src="../lib/layer.js"></script>
+	<script type="text/javascript" src="../lib/laypage.js"></script>
+	<script type="text/javascript" src="../static/js/index.js"></script>
+	
+</html>

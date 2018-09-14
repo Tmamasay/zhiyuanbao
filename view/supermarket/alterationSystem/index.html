@@ -1,0 +1,231 @@
+<!-- 交易记录模块-->
+<link rel="stylesheet" href="../static/css/module.css" />
+<style type="text/css">
+	.layui-layer-loading3:after{
+		content: '数据同步中';
+		position: absolute;
+		width: 90px;
+		left: -95px;
+		top: 0px;
+		font-size: 18px;
+		color: white;
+	}
+</style>
+<div class="warp group">
+	<!-- 操作栏-->
+	<div class="group-top">
+		<button class="layui-btn layui-btn-fluid layui-btn-danger button float-right" onclick="openPanel()">注销</button>
+	</div>
+
+	<div class="group-list">
+		<div class="box-shadow">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<thead>
+					<th>序号</th>
+					<th>订单号</th>
+					<th>购买人</th>
+					<th>支付方式</th>
+					<th>购买日期</th>
+					<th>收银员</th>
+					<th>金额</th>
+					<th>操作</th>
+				</thead>
+				<tbody id="alterationListDemo">
+					<script type="text/template" id="alterationList">
+						{{each list as value i}}
+							<tr>
+								<td>{{i +1 }}</td>
+								<td>{{value.orderId}}</td>
+								<td>{{value.nick}}</td>
+								<td>{{value.payWay | getPayWay}}</td>
+								<td>{{value.payTime}}</td>
+								<td>{{value.employeeName}}</td>
+								<td>¥ {{value.receipt}}</td>
+								<td>
+									<a class="layui-btn layui-btn-ms layui-btn-normal check_btn" data-id="{{value.orderId}}">查看</a>
+								</td>
+							</tr>
+						{{/each}}
+					</script>	
+				</tbody>
+			</table>
+			<div id="noeList" class="noeList" style="display: none;">
+				暂无数据
+			</div>
+			<!--分页-->
+			<div id="page" class="padding-big"></div>
+		</div>
+	</div>
+
+	<!-- 下班弹窗 -->
+	<div class="refund-panel" id="logoutPanel" style="display: none">
+		<div class="group-top padding-big-top">
+			<h5 class="title">基础信息</h5>
+			<div class="infoList" id="memberlinfoList" style="padding: 0;">
+				<script type="text/template" id="memberList">
+					<ul style="justify-content: space-around;" >
+						<li style="">
+							<i class="icon"><img src="../static/img/icon-01.png"></i>
+							<span >店铺名称:</span>
+							<span id="storeName">柠檬</span>
+						</li>
+						<li>
+							<i class="icon"><img src="../static/img/icon-03.png"></i>
+							<span>收银员:</span>
+							<span>{{value.employeeName}}</span>
+						</li>
+						<li style="">
+							<i class="icon"><img src="../static/img/icon-05.png"></i>
+							<span>编号:</span>
+							<span>{{value.employeeId}}</span>
+						</li>
+						<li>
+							<i class="icon"><img src="../static/img/icon-02.png"></i>
+							<span>上班时间:</span>
+							<span>{{value.loginTime}}</span>
+						</li>
+					</ul>
+				</script>
+			</div>
+		</div>
+		<div class="group-list border-top padding-big-top">
+			<div style="width: 100%;margin: 0 auto;">
+				<h5 class="title">收款信息</h5>
+				<div class="gatheringList" id="gatheringList">
+					<script type="text/template" id="templateList">
+						<ul>
+						<li>
+							<span class="gatheringListPrice">{{value.cashReceipt}}</span>
+							<span class="gatheringListTitle">现金金额</span>
+						</li>
+						<li>
+							<span class="gatheringListPrice">{{value.pointMoney}}</span>
+							<span class="gatheringListTitle">积分</span>
+						</li>
+						<li>
+							<span class="gatheringListPrice">{{value.couponMoney}}</span>
+							<span class="gatheringListTitle">优惠券</span>
+						</li>
+						<li>
+							<span class="gatheringListPrice">{{value.totalReceipt}}</span>
+							<span class="gatheringListTitle">收款合计</span>
+						</li>
+					</ul>
+					<ul>
+						<li>
+							<span class="gatheringListPrice">{{value.saleNum}}</span>
+							<span class="gatheringListTitle">销售商品数</span>
+						</li>
+						<li>
+							<span class="gatheringListPrice">{{value.returnNum}}</span>
+							<span class="gatheringListTitle">退货商品</span>
+						</li>
+						<li>
+							<span class="gatheringListPrice">{{value.cashReturn}}</span>
+							<span class="gatheringListTitle">退货金额</span>
+						</li>
+						<li>
+							<span class="gatheringListPrice">{{value.imprestCashLogin}}</span>
+							<span class="gatheringListTitle">备用金</span>
+						</li>
+					</ul>
+                </script>			
+				</div>
+			</div>
+		</div>
+		<!-- 商品信息汇总 -->
+		<div class="gatheringListBtn">
+			<div class="getLogoutBtn padding-big ">
+				<a href="javascript:void(0)" onclick="getLogout()">
+					<span>下班</span>
+					<span id="LogoutTime">00:00:00</span>
+				</a>
+				<p><span>当前金额</span><span id="imprestCashLogout">0</span></p>
+			</div>
+		</div>
+
+	</div>
+	<!-- 订单弹窗 -->
+	<div class="refund-panel" id="refundPanel" style="display: none">
+		<div class="group-top padding-big-top">
+			<h5 class="title">基础信息</h5>
+			<div class="infoList">
+				<ul>
+					<li>
+						<i class="icon"><img src="../static/img/icon-01.png"></i>
+						<span>会员:</span>
+						<span id="nick"></span>
+					</li>
+					<li>
+						<i class="icon"><img src="../static/img/icon-03.png"></i>
+						<span>手机号:</span>
+						<span id="phone"></span>
+					</li>
+					<li>
+						<i class="icon"><img src="../static/img/icon-05.png"></i>
+						<span>订单号:</span>
+						<span id="orderCode"></span>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<i class="icon"><img src="../static/img/icon-02.png"></i>
+						<span>支付方式:</span>
+						<span id="payWay"></span>
+					</li>
+					<li>
+						<i class="icon"><img src="../static/img/icon-04.png"></i>
+						<span>购买日期:</span>
+						<span id="payTime"></span>
+					</li>
+					<li >
+						<i class="icon"><img src="../static/img/icon-06.png"></i>
+						<span>收银员:</span>
+						<span id="employeeName"></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="group-list">
+			<h5 class="title" >商品信息</h5>
+			<div class="box-shadow" style="width: 95%">
+				<table border="0" cellspacing="0" cellpadding="0" >
+					<thead>
+					<th>序号</th>
+					<th>商品编号</th>
+					<th>购买人</th>
+					<th>商品名称</th>
+					<th>数量</th>
+					<th>小计</th>
+					</thead>
+
+					<tbody id="orderDetailListDemo">
+					<script type="text/template" id="orderDetailList">
+						{{each list as value i}}
+						<tr>
+							<td>{{i + 1}}</td>
+							<td>{{value.goodsId}}</td>
+							<td class="nick"></td>
+							<td>{{value.goodsName}}</td>
+							<td>{{value.num}}</td>
+							<td>{{value.money}}</td>
+						</tr>
+						{{/each}}
+					</script>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 商品信息汇总 -->
+		<div class="shopGoodsClearing padding-big ">
+			<div class="shopGoodsInfo padding-big-top">
+				<p>合计：¥ <span id="realPrice">0.00</span></p>
+				<p>优惠券：¥ <span id="couponPrice">0.00</span></p>
+				<p>积分：¥ <span id="integralPrice">0.00</span></p>
+				<p>实收：¥ <span id="payPrice" class="price payPrice">0.00</span></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="../view/supermarket/alterationSystem/alteration.js"></script>

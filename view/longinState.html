@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>智缘宝超市-登录</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="../static/css/main/pintuer.css" />
+		<link rel="stylesheet" href="../static/css/login.css" />
+		<script type="text/javascript" src="../lib/jquery.js" ></script>
+		<script type="text/javascript" src="../lib/pintuer.js" ></script>
+		<script type="text/javascript" src="../static/js/center.js"></script>
+		<script language="javascript">
+			//防止页面后退
+			history.pushState(null, null, document.URL);
+			window.addEventListener('popstate', function () {
+				history.pushState(null, null, document.URL);
+			});
+		</script>
+	</head>
+	<body>
+		<div class="loginState">
+			<!-- top -->
+			<div class="top top_bg">
+				<div class="back" onclick="back()"></div>
+				<div class="log"></div>
+			</div>
+			<div class="content container">
+					<div class="onDuty">
+						<img src="../static/img/login-icon01.png" />
+						<button class="button" onclick="getUpdateStatus(1)">当班</button>
+					</div>
+					<div class="offDuty">
+						<img src="../static/img/login-icon02.png" />
+						<button class="button"  onclick="getUpdateStatus(0)">不当班</button>
+					</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../lib/layer.js"></script>
+	<script type="text/javascript" src="../static/js/loginState.js"></script>
+</html>

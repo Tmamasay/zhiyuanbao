@@ -1,0 +1,367 @@
+
+/* col group*/
+
+.group {
+	background: #f8f8f8;
+	padding: 32px;
+	position: relative;
+}
+
+.group .group-select{
+	position: relative;
+	top: 50px;
+	width: 50%;
+}
+
+.group .group-select .form-group label{
+	width: 100%;
+	font-size: 18px;
+}
+
+.group .group-select .form-group input{
+	width: 100%;
+	margin-top:20px;
+	margin-left:0;
+	height: 48px;
+
+}
+.group .group-select .settlementKeyboard{
+	position: relative;
+	height: auto;
+	overflow: hidden;
+	top: 100px;
+}
+
+.group .group-select .settlementKeyboard ul {
+	width: 100%;
+
+}
+
+.group .group-select .settlementKeyboard ul li{
+	width: 28%;
+	float: left;
+	background: white;
+	text-align: center;
+	height: 60px;
+	margin-top: 18px;
+	font-size: 16px;
+	margin-left: 8%;
+	cursor: pointer;
+}
+.group .group-select .settlementKeyboard ul li.bg-blue{
+	background-color:#3185ff ;
+	color: white;
+}
+
+
+.return-num .minus{
+	font-size: 24px;
+	display: inline-block;
+	width: 33px;
+	height: 33px;
+	border-radius: 50%;
+	border: 1px solid #4786ff;
+	text-align: center;
+	color: #4786ff;
+	margin-right: 10px;
+}
+
+.return-num .number{
+	font-size: 24px;
+	display: inline-block;
+	color: #8f9090;
+}
+
+.return-num .add {
+	font-size: 24px;
+	display: inline-block;
+	width: 33px;
+	height: 33px;
+	border-radius: 50%;
+	border: 1px solid #4786ff;
+	background: #4786ff;
+	text-align: center;
+	color: white;
+	margin-left: 10px;
+}
+
+
+.integral-warp .return-num .minus{
+	font-size: 24px;
+	display: inline-block;
+	width: 33px;
+	height: 33px;
+	border-radius: 50%;
+	border: 1px solid #643cbc;
+	text-align: center;
+	color: #643cbc;
+	margin-right: 10px;
+}
+
+.return-num .number{
+	font-size: 20px;
+	text-align: center;
+	min-width: 40px;
+	color: #8f9090;
+}
+
+.integral-warp .return-num .add {
+	font-size: 24px;
+	display: inline-block;
+	width: 33px;
+	height: 33px;
+	border-radius: 50%;
+	border: 1px solid #643cbc;
+	background: #643cbc;
+	text-align: center;
+	color: white;
+	margin-left: 10px;
+}
+
+
+.group-top {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+
+.group-top .infoList{
+
+}
+
+
+
+.group h5.title{
+	font-size: 18px;
+	color: #3185ff;
+	padding-left: 40px;
+	margin-bottom: 20px;
+	position: relative;
+}
+.group h5.title:after{
+	content: '';
+	clear: both;
+	position: absolute;
+	left: 25px;
+	top: 10px;
+	width: 7px;
+	height: 7px;
+	background-color: #3185ff;
+	border-radius: 50%;
+}
+
+.group-top .infoList{
+	padding-left: 40px;
+}
+
+.group-top .infoList ul,.refund-panel ul{
+	display: flex;
+	flex-flow: nowrap;
+	justify-content:space-between;
+}
+.group-top .infoList ul li,.refund-panel ul li{
+	min-width: 25%;
+	padding: 10px 0;
+	display: inline-block;
+}
+
+#memberlinfoList ul li{
+	min-width: 15%;
+}
+
+.group-top .infoList ul li span,.refund-panel ul li span{
+	font-size: 16px;
+	color: #3185ff;
+	padding-left: 10px;
+}
+
+.group-top .infoList ul li span:last-child,.refund-panel ul li span:last-child{
+	color: #929292;
+}
+
+
+
+.group-list{
+	width: 100%;
+	height: auto;
+	margin-top: 30px;
+}
+.group-list .box-shadow{
+	width: 100%;
+	height: auto;
+	margin:  0 auto;
+	overflow: hidden;
+	box-shadow: 1px 2px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.group-list table{
+	width: 100%;
+	margin:  0 auto;
+	
+	
+}
+.group-list table thead{
+	background-color: #fafafa ;
+}
+
+.group-list table thead th{
+	padding: 18px 0;
+	text-align: left;
+	padding-left: 20px;
+	font-size: 16px;
+}
+.group-list table thead th:last-child{
+	text-align: center;
+}
+.group-list table tbody tr:nth-child(odd){
+	background-color: #fefefe ;
+}
+
+.group-list table tbody tr:nth-child(even){
+	background-color: #fafafa ;
+}
+
+.group-list table tbody tr td{
+	padding: 8px 0;
+	text-align: left;
+	padding-left: 20px;
+	font-size: 16px;
+}
+
+.group-list table tbody tr td:last-child{
+	text-align: center;
+}
+
+.group .form-group .form-control{
+	width: 140px;
+	height: 42px;
+	margin-left: 10px;
+	border:1px solid #d0d0d0;
+	padding-left: 12px;
+}
+
+.group .form-group label{
+	font-size: 14px;
+}
+.group .form-group span{
+	font-size: 14px;
+	margin-left: 10px;
+}
+.group .form-group .form-control option{
+	font-size: 20px;
+	color: #787878;
+}
+
+
+.group .refund-panel h5.title{
+	font-size: 18px;
+}
+
+.refund-panel .group-top .infoList ul li span{
+	font-size: 14px;
+}
+
+.group .refund-panel .group-list table thead th{
+	font-size: 14px;
+}
+
+.group .refund-panel  table tbody tr td{
+	font-size: 12px;
+}
+.group .gatheringList{
+	padding: 0 20px;
+}
+.group .gatheringList ul{
+	display: flex;
+	justify-content: space-between;
+}
+
+.group .gatheringList ul li{
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+
+
+
+.group .gatheringList ul li span{
+	display: inline-block;
+	padding: 5px 0;
+}
+.group .gatheringList ul li span.gatheringListPrice{
+	font-size: 20px;
+	color: #000;
+}
+.group .gatheringList ul li span.gatheringListTitle{
+	
+	padding-left: 24px;
+	position: relative;
+	font-size: 14px;
+	color: #959595;
+}
+.group .gatheringList ul li span.gatheringListTitle:before{
+	content: '';
+	clear: both;
+	position: absolute;
+	left: 25%;
+	top: 7px;
+	width: 16px;
+	height: 16px;
+	background: url(../img/gathering-icon.jpg) no-repeat;
+}
+.group .gatheringListBtn{
+	margin: 0 auto;
+	text-align: center;
+}
+
+.group .getLogoutBtn{
+	display: inline-block;
+}
+
+.group .getLogoutBtn a{
+	display: inline-block;
+	text-align: center;
+	color: white;
+	font-size: 18px;
+	width: 136px;
+	height:136px;
+	padding: 50px 0;
+	background: url(../img/logout-icon.png) no-repeat;
+	background-size:auto;
+}
+
+.group .getLogoutBtn a span{
+	display: block;
+	text-align: center;
+}
+
+.group .getLogoutBtn a span:last-child{
+	padding-top: 8px;
+	font-size: 14px;
+}
+
+.group .gatheringListBtn p span{
+	display: block;
+	text-align: center;
+	font-size: 18px;
+	color: #959595;
+}
+.group .gatheringListBtn p span:last-child{
+	font-size: 36px;
+	color:#ff5a58;
+}
+
+.noeList{
+	width: 100%;
+	text-align: center;
+	padding: 20px 0;
+}
+
+
+.integral-warp .layui-btn-normal {
+	background-color: #643cbc;
+}
+
+.integral-warp .layui-layer-title{
+	background-color: #643cbc !important;
+}

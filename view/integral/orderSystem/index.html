@@ -1,0 +1,49 @@
+<!-- 交易记录模块-->
+<link rel="stylesheet" href="../static/css/module.css" />
+<div class="warp group">
+	<!-- 操作栏-->
+
+	<div class="group-list">
+		<div class="box-shadow">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<thead>
+					<th>序号</th>
+					<th>订单号</th>
+					<th>购买人</th>
+<!--					<th>购买日期</th>-->
+					<th>收银员</th>
+					<th>现金</th>
+					<th>积分</th>
+					<th>消费券</th>
+					<th>操作</th>
+				</thead>
+				<tbody id="IntegralOrderListDemo">
+					<script type="text/template" id="IntegralOrderList">
+						{{each list as value i}}
+						<tr>
+							<td>1</td>
+							<td>{{value.hangIntegralOrderId}}</td>
+							<td>{{value.nick}}</td>
+<!--							<td>2018/03/17 15:33:50</td>-->
+							<td id="cashierName"></td>
+							<td>¥ {{value.sumCash}}</td>
+							<td>{{value.sumIntegral}}</td>
+							<td>{{value.sumFubi}}</td>
+							<td>
+								<a class="layui-btn layui-btn-ms layui-btn-danger del_btn" data-id="{{value.hangIntegralOrderId}}">删除</a>
+<!--							<a class="layui-btn layui-btn-ms layui-btn-normal detail_btn" data-id="">详情</a>-->
+								<a class="layui-btn layui-btn-ms layui-btn-normal clear_btn"data-hangIntegralOrderId  = {{value.hangIntegralOrderId }} data-id="{{i}}">结账</a>
+							</td>
+						</tr>
+						{{/each}}
+					</script>
+				</tbody>
+			</table>
+			<div id="noeList" class="noeList" style="display: none;">
+				暂无数据
+			</div>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript" src="../view/integral/orderSystem/order.js"></script>

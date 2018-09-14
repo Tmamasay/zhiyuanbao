@@ -1,0 +1,147 @@
+<!-- 收银模块-->
+<div class="warp cashier integral-warp">
+    <div class="left">
+        <!-- 会员登入 -->
+        <div class="memberLogin border-gray border-bottom">
+            <div class="ScanCodeinput" id="ScanCodeMemberInput">
+                <input type="text" name="" class="layui-input" id="ScanCodeMember" placeholder="扫码添加会员信息">
+            </div>
+            <div class="memberInfo" id="memberInfo" style="display: none;">
+                <script type="text/template" id="memberInfoList">
+                    <ul>
+                        <li>会员:<span>{{value.nick}}</span></li>
+                        <li>手机号:<span>{{value.phone}}</span></li>
+                        <li>积分:<span>{{value.points}}</span></li>
+                        <li>消费券:<span>{{value.packet}}</span></li>
+                    </ul>
+                </script>
+            </div>
+        </div>
+        <!-- 商品列表 -->
+        <div class="shopGoodslist  padding-big">
+            <div class="ScanCodeinput border-gray border-bottom padding-big-bottom">
+                <input type="text" name="" class="layui-input" id="ScanCodeinput" placeholder="扫码添加商品">
+            </div>
+            <ul id="Goods">
+                <script type="text/template" id="GoodsList">
+                    {{each list.goodsListData as value i}}
+                        {{if value.num >0 }}
+                            <li class="border-gray border-bottom padding-big-bottom padding-big-top"
+                                data-allotType="{{value.allotTitle}}" data-gNo="{{value.goodsNo}}" data-goodsId="{{value.goodsId}}"
+                                data-specValueId="{{value.specValueId}}" data-fromSkuId="{{value.fromSkuId}}" data-sellType="{{value.sellType}}">
+                                <div class="shopGoodsTop">
+                                    <h5 title="{{value.goodsName}}" style="">{{value.goodsName}}</h5>
+                                </div>
+                                <div class="shopGoodsCT margin-big-top">
+                                    <div class="shopGoodPrice">
+                                        <p>现金: <span class="price">{{value.price}}</span></p>
+                                        <p>积分:  <span class="integral">{{value.integral}}</span></p>
+                                        <p>消费券: <span class="coupon">{{value.fubi}}</span></p>
+                                    </div>
+                                    <div>
+                                        <span class="minus" data-goodsId="{{value.goodsId}}"
+                                              data-allotType="{{value.allotTitle}}" data-goodsNo="{{value.goodsNo}}"> - </span>
+                                        <span class="number">{{value.num}}</span>
+                                        <span class="add" data-goodsId="{{value.goodsId}}"
+                                              data-allotType="{{value.allotTitle}}"> + </span>
+                                    </div>
+                                </div>
+                            </li>
+                        {{/if}}
+                    {{/each}}
+                </script>
+            </ul>
+        </div>
+        <!-- 商品信息汇总 -->
+        <div class="shopGoodsClearings bg-white padding-big  border-gray border-top">
+
+            <div class="shopGoodsInfo  float-right" style="width: 50%">
+                <p>积分：¥ <span id="integralPrice">0.00</span></p>
+                <p>消费券：¥ <span id="couponPrice">0.00</span></p>
+                <p>现金：¥ <span id="payPrice" class="payPrice">0.00</span></p>
+            </div>
+            <br clear="all">
+            <div class="shopGoodsBtn margin-big-top">
+                <button class="layui-btn layui-btn-primary layui-btn-radius layui-btn-lg button-active float-right margin-big-left" onclick="uplodOrder()">挂账</button>
+                <button class="layui-btn layui-btn-primary layui-btn-radius layui-btn-lg float-right " onclick="reset()">清空 </button>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="settlementModule">
+            <!-- 结算方式 -->
+            <div class="settlementMethod">
+                <!--<ul>-->
+                <!--<li class="active">现金</li>-->
+                <!--<li>二维码</li>-->
+                <!--<li>余额</li>-->
+                <!--</ul>-->
+            </div>
+            <br clear="all"/>
+            <div id="" class="ycPrice margin-big-top border-gray border-bottom padding-big-top padding-big-bottom">
+                <span>应收金额</span>
+                <span class="price " style="color: #643CBC">¥ <font class="payPrice">0.00</font></span>
+            </div>
+            <div id="" class="scPrice margin-big-top border-gray border-bottom padding-big-top padding-big-bottom">
+                <div>
+                    <span>实收金额</span>
+                    <input type="text" readonly="" name="" id="relTakePrice">
+                </div>
+                <div>
+                    <span>找零</span>
+                    <input type="text" readonly="" name="" id="changePrice">
+                </div>
+            </div>
+            <!--  触摸键盘 -->
+            <div class="settlementKeyboard margin-big-top">
+                <ul>
+                    <li class="ml-none input-key">7</li>
+                    <li class="input-key">8</li>
+                    <li class="input-key">9</li>
+                    <li class="empty" onclick="resetKeyboard()"><span></span></li>
+                    <li class="ml-none input-key">4</li>
+                    <li class="input-key">5</li>
+                    <li class="input-key">6</li>
+                    <li class="bg-blue specialKey" style="background: #643CBC">¥10</li>
+                    <li class="ml-none input-key">1</li>
+                    <li class="input-key">2</li>
+                    <li class="input-key">3</li>
+                    <li class="bg-blue specialKey" style="background: #643CBC">¥50</li>
+                    <li class="ml-none input-key">0</li>
+                    <li class="input-key">00</li>
+                    <li class="decimal">.</li>
+                    <li class="bg-blue specialKey" style="background: #643CBC">¥100</li>
+                </ul>
+            </div>
+            <!-- 结算 -->
+            <br clear="all"/>
+            <div class="clearing_btn ">
+                <button class="button" onclick="checkOut()" style="border: 1px solid #643CBC;color: #643CBC">结账</button>
+                <!--<button class="button" onclick="viewToWord()">打印小票</button>-->
+            </div>
+        </div>
+    </div>
+
+
+    <div id="infor_con_item_select">
+        <script type="text/template" id="paymentList">
+            {{each list.integralSellTypeList as rs}}
+
+            <div class="tb_list">
+                <div class="tb_list_left">
+                    <input class="my_radio" type="radio" name="paymentType" value="{{rs.sellType}}"/>
+                    <span>{{if rs.sellType==1}}积分 {{else if rs.sellType==2}}积分+现金{{else if rs.sellType==3}}消费券{{else if rs.sellType==4}}消费券+现金{{/if}}</span>
+                </div>
+                <span>{{if rs.sellType==1}}{{rs.integral}} {{else if rs.sellType==2}}{{rs.integral}}+{{rs.cash}}{{else if rs.sellType==3}}{{rs.fubi}}{{else if rs.sellType==4}}{{rs.fubi}}+{{rs.cash}}{{/if}} </span>
+
+            </div>
+
+            {{/each}}
+        </script>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../view/integral/cashierSystem/cashierSystem.js"></script>
+<script type="text/javascript" src="../static/js/KeyboardVal.js"></script>
+<script type="text/javascript" src="../static/js/printer.js"></script>

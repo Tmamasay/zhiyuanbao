@@ -1,0 +1,127 @@
+<!-- 交易记录模块-->
+<link rel="stylesheet" href="../static/css/module.css" />
+
+
+<div class="warp group integral-warp">
+
+	<!-- 查询模块 -->
+	<div class="group-select" id="group-select">
+		<div class="form-group">
+			<label>输入订单号</label>
+			<input type="text" name="orderId" id="storeOrderId" class="form-control">
+		</div>
+		<!--  触摸键盘 -->
+		<div class="settlementKeyboard margin-big-top">
+			<ul>
+				<li class="ml-none input-key">7</li>
+				<li class="input-key">8</li>
+				<li class="input-key">9</li>
+				<li class="ml-none input-key">4</li>
+				<li class="input-key">5</li>
+				<li class="input-key">6</li>
+				<li class="ml-none input-key">1</li>
+				<li class="input-key">2</li>
+				<li class="input-key">3</li>
+				<li class="ml-none input-key">0</li>
+				<li class="empty" onclick="resetKeyboard()"><span></span></li>
+				<li class="bg-blue" style="background: #643CBC" id="search">搜索</li>
+			</ul>
+		</div>
+	</div>
+	<!-- 操作栏-->
+	<div id="swopPanel" style="display: none">
+		<div class="group-top">
+			<h5 class="title">基础信息</h5>
+			<div class="infoList">
+				<ul>
+					<li>
+						<i class="icon"><img src="../static/img/icon-01.png"></i>
+						<span>会员:</span>
+						<span id="nick"></span>
+					</li>
+					<li>
+						<i class="icon"><img src="../static/img/icon-03.png"></i>
+						<span>手机号:</span>
+						<span id="phone"></span>
+					</li>
+					<li>
+						<i class="icon"><img src="../static/img/icon-05.png"></i>
+						<span>订单号:</span>
+						<span id="orderCode"></span>
+					</li>
+				</ul>
+				<ul>
+					<!--<li>-->
+						<!--<i class="icon"><img src="../static/img/icon-02.png"></i>-->
+						<!--<span>支付方式:</span>-->
+						<!--<span id="payWay"></span>-->
+					<!--</li>-->
+					<li>
+						<i class="icon"><img src="../static/img/icon-04.png"></i>
+						<span>购买日期:</span>
+						<span id="payTime"></span>
+					</li>
+					<li>
+						<i class="icon"><img src="../static/img/icon-06.png"></i>
+						<span>收银员:</span>
+						<span id="employeeName"></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="group-list">
+			<div class="box-shadow">
+				<h5 class="title">商品信息</h5>
+				<table border="0" cellspacing="0" cellpadding="0"  style="table-layout:fixed;">
+					<thead>
+						<th width="50"></th>
+						<th>序号</th>
+						<th>商品编号</th>
+						<th>购买人</th>
+						<th width="240" >商品名称</th>
+						<th>现金</th>
+						<th>消费券</th>
+						<th>积分</th>
+						<th width="160" style="text-align: center">数量</th>
+						<th>操作</th>
+					</thead>
+					<tbody id="returnOrderDetailListDemo">
+						<script type="text/template" id="returnOrderDetailList">
+							{{each list as value i}}
+							<tr>
+								<td><input type="checkbox"  value="{{i}}" data-num="{{value.num}}" data-money="{{value.cash}}" name="" style="width: 25px; height: 25px;"></td>
+								<td>{{i + 1}}</td>
+								<td>{{value.goodsId}}</td>
+								<td class="nick"></td>
+								<td title="{{value.goodsName}}" width="240" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">{{value.goodsName}}</td>
+								<td class="unitPrice">￥{{value.cash}}.00</td>
+								<td>{{value.fubi}}</td>
+								<td>{{value.integral}}</td>
+								<td class="return-num">
+									<span class="minus">-</span>
+									<span class="number">{{value.num}}</span>
+									<span class="add" data-num="{{value.num}}">+</span>
+								</td>
+								<td><a class="layui-btn layui-btn-ms layui-btn-normal  refund_btn" data-orderId="{{value.integralOrderId}}" data-orderData="{{value}}">退货</a></td>
+							</tr>
+							{{/each}}
+						</script>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 商品信息汇总 -->
+		<div class="shopGoodsClearing padding-big ">
+			<div class="shopGoodsInfo padding-big-top">
+				<p>退货金额：¥ <span id="returnPrice" class="price">0.00</span></p>
+			</div>
+			<div class="shopGoodsBtn margin-big-top">
+				<button class="layui-btn layui-btn-danger button  float-right margin-big-left" onclick="getBatchReturn()">批量退货</button>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+<script type="text/javascript" src="../static/js/Keyboard.js"></script>
+<script type="text/javascript" src="../view/integral/swopSystem/swopSystem.js"></script>

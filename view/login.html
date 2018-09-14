@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>智缘宝超市-登录</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="../static/css/main/layui.css"/>
+    <link rel="stylesheet" href="../static/css/main/public.css"/>
+    <link rel="stylesheet" href="../static/css/login.css"/>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="../lib/layui.js"></script>
+    <script type="text/javascript" src="../static/js/center.js"></script>
+    <script language="javascript">
+        //防止页面后退
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+
+    </script>
+</head>
+
+<body class="bg-img" onLoad="javascript:window.resizeTo(screen.availWidth,screen.availHeight);window.moveTo(0,0) ">
+<div class="loading" style="display: none"></div>
+<div class="container set_int">
+
+    <div class="layui-row">
+        <div class="">
+            <div class="lo_weint">
+                <!--登录图片-->
+                <div class="lo_font"></div>
+                <!--s：登录框-->
+                <div class="lo_heigth">
+                    <div class="lo_title"><font>门店登录</font></em> <span class="layui-btn layui-btn-xs bg-blue back_btn"
+                                                                       style="display: none;">注销门店</span></div>
+                    <div class="lo_store">
+                        <div class="lo_name">
+                            <input id="phone" type="text" maxlength="16" class="input layui-input  "
+                                   placeholder="请输手机号码"/>
+                            <span></span>
+                        </div>
+                        <div class="lo_pwd lo_pwd1 active" id="panel1">
+                            <input id="storePwd1" type="password" class="input layui-input" maxlength="16"
+                                   placeholder="请输入密码"/>
+                            <span></span>
+                        </div>
+                        <div class="lo_pwd lo_pwd1 lo_pwd2" id="panel2">
+                            <input id="storePwd2" type="password" class="input layui-input" maxlength="16"
+                                   placeholder="请输验证密码"/>
+                            <span></span>
+                            <button>获取验证码</button>
+                        </div>
+                        <div class="lo_way">
+                            <span class="layui-btn layui-btn-primary layui-btn-xs bg-blue "
+                                  data-tab="panel1">密码登录</span>
+                            <span class="layui-btn layui-btn-primary layui-btn-xs " data-tab="panel2">验证码登录</span>
+                        </div>
+                        <div class="lo_denlu clearfix" style="margin-top: 40px">
+                            <!--<a href="register.html">找回密码</a>-->
+                            <input class="layui-btn layui-btn-fluid float-right bg-blue" style="width: 100%;"
+                                   id="signlogStore" onkeypress="signlogStore()" onclick="signlogStore()" type="button"
+                                   value="登录"/>
+                        </div>
+                    </div>
+                    <div class="lo_employee" style="display: none;">
+                        <div class="lo_name">
+                            <input id="names" type="text" maxlength="16" class="input layui-input  "
+                                   placeholder="请输入工号"/>
+                            <span></span>
+                        </div>
+                        <div class="lo_pwd">
+                            <input id="pwds" type="password" class="input layui-input" maxlength="16"
+                                   placeholder="输入密码"/>
+                            <span></span>
+                        </div>
+                        <div class="lo_denlu margin-big-top clearfix">
+                            <!--<a href="register.html">找回密码</a>-->
+                            <input class="layui-btn layui-btn-fluid float-left bg-blue" style="width: 45%;"
+                                   onkeypress="signlog()" onclick="signlog()" type="button" value="登录"/>
+                            <input class="layui-btn layui-btn-fluid float-right bg-blue repair_btn" style="width: 45%;"
+                                   type="button" value="注销员工"/>
+                        </div>
+                    </div>
+                </div>
+                <!--e：登录框-->
+            </div>
+        </div>
+    </div>
+
+    <!-- 更新系统-->
+
+    <div class="updateSystem" style="display: none">
+        <input class="layui-btn layui-btn-fluid float-right bg-blue update_btn" type="button" value="更新系统"/>
+    </div>
+
+</div>
+</body>
+<script type="text/javascript" src="../lib/layer.js"></script>
+<script type="text/javascript" src="../static/js/login.js"></script>
+
+</html>
