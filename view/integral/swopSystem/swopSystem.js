@@ -26,48 +26,50 @@ function searchReturnOrder(){
 		layer.msg('请填写订单号');
 		return false;
 	}else{
-		layer.prompt({
-			title: '获取退换货授权',
-			closeBtn: 2,
-			shade: 0.8,
-			formType: 0
-		}, function (pass, index) {
-			$.ajax({
-				type: "get",
-				url: authorize,
-				data: {
-					username: pass
-				},
-				xhrFields: {
-					withCredentials: true
-				},
-				crossDomain: true,
-				success: function (rs) {
-					if (rs.status == 200) {
-						layer.msg('授权成功', {'time': 1000}, function () {
-							getReturnOrderList(orderId);
-						})
-					} else {
-						layer.msg(rs.message, {'time': 1000});
-					}
+		getReturnOrderList(orderId);
+		// layer.prompt({
+		// 	title: '获取退换货授权',
+		// 	closeBtn: 2,
+		// 	shade: 0.8,
+		// 	formType: 0
+		// }, function (pass, index) {
+		// 	$.ajax({
+		// 		type: "get",
+		// 		url: authorize,
+		// 		data: {
+		// 			username: pass
+		// 		},
+		// 		xhrFields: {
+		// 			withCredentials: true
+		// 		},
+		// 		crossDomain: true,
+		// 		success: function (rs) {
+		// 			if (rs.status == 200) {
+		// 				layer.msg('授权成功', {'time': 1000}, function () {
+							
+		// 				})
+		// 			} else {
+		// 				layer.msg(rs.message, {'time': 1000});
+		// 			}
 					
-				}
+		// 		}
 				
-			})
-		});
+		// 	})
+		// });
 		
 	}
 }
 
 function getReturnOrderList(orderId) {
+	alert("yes");
 	$.ajax({
-		type: "get",
+		type: "POST",
 		url: findIntegralOrder,
 		data: {
 			integralOrderId: orderId
 		},
 		xhrFields: {
-			withCredentials: true
+			withCredentials: false
 		},
 		crossDomain: true,
 		success: function (rs) {

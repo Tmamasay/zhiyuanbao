@@ -37,8 +37,8 @@ var findIntegralOrderPage = turl + "/cashier/integralOrder/findPage"; // 获取�
 var findIntegralOrderDetail = turl + "/cashier/integralOrder/findOrderDetail"; // 获取积分订单详情
 
 // 超市
-var findReturnOrder = turl + "/cashier/return/findOrder"; // 获取退货订单
-var batchReturn = turl + "/cashier/return/batchReturn"; // 批量退货
+var findReturnOrder = turl + "/wc/return/findWcOrder"; // 获取退货订单
+var batchReturn = turl + "/wc/return/batch"; // 批量退货
 
 // 积分
 var findIntegralOrder = turl + "/cashier/integralReturn/findIntegralOrder"; // 获取积分退货订单
@@ -60,13 +60,13 @@ var getLoginStore = turl + "/auth/getLoginWcStore";
 
 function queryMenberIFFnfo(token, callback) {
     $.ajax({
-        type: "get",
+        type: "POST",
         url: getUser,
         data: {
             phone: token
         },
         xhrFields: {
-            withCredentials: true
+            withCredentials: false
         },
         crossDomain: true,
         success: function (rs) {

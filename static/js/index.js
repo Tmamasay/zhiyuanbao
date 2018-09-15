@@ -28,7 +28,7 @@ function setInit() {
 				letNavhtml += '</li>';
 				letNavhtml += '<li  data-url=\'supermarket/swopSystem/index.html\'>';
 				letNavhtml += '<span class="icon04"></span>';
-				letNavhtml += '<font class="title">退还货</font>';
+				letNavhtml += '<font class="title">退换货</font>';
 				letNavhtml += '</li>';
 				letNavhtml += '<li  data-url=\'supermarket/alterationSystem/index.html\'>';
 				letNavhtml += '<span class="icon05"></span>';
@@ -73,7 +73,7 @@ function setInit() {
 				letNavhtml += '</li>';
 				letNavhtml += '<li class="integral"  data-url=\'integral/swopSystem/index.html\'>';
 				letNavhtml += '<span class="icon04"></span>';
-				letNavhtml += '<font class="title">退还货</font>';
+				letNavhtml += '<font class="title">退换货</font>';
 				letNavhtml += '</li>';
 				letNavhtml += '<li class="integral"  data-url=\'integral/alterationSystem/index.html\'>';
 				letNavhtml += '<span class="icon05"></span>';
@@ -119,9 +119,9 @@ function setInit() {
 			letNavhtml += '<span class="icon03"></span>';
 			letNavhtml += '<font class="title">挂单</font>';
 			letNavhtml += '</li>';
-			letNavhtml += '<li class="integral"  data-url=\'integral/swopSystem/index.html\'>';
+			letNavhtml += '<li class="integral"  data-url=\'supermarket/swopSystem/index.html\'>';
 			letNavhtml += '<span class="icon04"></span>';
-			letNavhtml += '<font class="title">退还货</font>';
+			letNavhtml += '<font class="title">退换货</font>';
 			letNavhtml += '</li>';
 			letNavhtml += '<li  data-url=\'supermarket/alterationSystem/index.html\'>';
 			letNavhtml += '<span class="icon05"></span>';

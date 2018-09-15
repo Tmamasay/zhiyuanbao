@@ -429,15 +429,14 @@ function uplodOrder() {
 		goodsInfo.money = $(el).find('.price').text().substring(1);
 		goodsList.push(goodsInfo);
 	})
-	//console.log(goodsList)
 
 	var data = {
 		"wcBillOptionList": goodsList,
 		// "sumMoney": _payPrice,
-		"token": token,
+		"token": token
 		// "nick": nick
 	}
-	//console.log(data)
+	
 	$.ajax({
 		type: "post",
 		url: saveHangOrder,
@@ -665,7 +664,7 @@ function getCoupons() {
 					type: 1,
 					title: '使用优惠券',
 					content: $('#layui_table'),
-					area: ['500px', '300px']
+					area: ['600px', '400px']
 				});
 			} else {
 				layer.close(index);
@@ -686,6 +685,61 @@ function drawing() {
 		id: 2,
 		name: '又一张抵用券',
 		money: '200',
+		time: '2019/10/25'
+	}, {
+		id: 3,
+		name: '又又一张抵用券',
+		money: '300',
+		time: '2019/10/25'
+	}, {
+		id: 3,
+		name: '又又一张抵用券',
+		money: '300',
+		time: '2019/10/25'
+	}, {
+		id: 3,
+		name: '又又一张抵用券',
+		money: '300',
+		time: '2019/10/25'
+	}, {
+		id: 3,
+		name: '又又一张抵用券',
+		money: '300',
+		time: '2019/10/25'
+	}, {
+		id: 3,
+		name: '又又一张抵用券',
+		money: '300',
+		time: '2019/10/25'
+	}, {
+		id: 3,
+		name: '又又一张抵用券',
+		money: '300',
+		time: '2019/10/25'
+	}, {
+		id: 3,
+		name: '又又一张抵用券',
+		money: '300',
+		time: '2019/10/25'
+	}, {
+		id: 3,
+		name: '又又一张抵用券',
+		money: '300',
+		time: '2019/10/25'
+	}, {
+		id: 3,
+		name: '又又一张抵用券',
+		money: '300',
+		time: '2019/10/25'
+	}, {
+		id: 3,
+		name: '又又一张抵用券',
+		money: '300',
+		time: '2019/10/25'
+	}, {
+		id: 3,
+		name: '又又一张抵用券',
+		money: '300',
 		time: '2019/10/25'
 	}, {
 		id: 3,
