@@ -25,14 +25,14 @@ function getUpdateImprestCash() {
         formType: 0
 	}, function(pass, index) {
 		$.ajax({
-				type: "get",
+				type: "post",
 				url: updateStatus,
 				data: {
 					imprestCash: pass
 				},
-				xhrFields: {
-					withCredentials: true
-				},
+				// xhrFields: {
+				// 	withCredentials: true
+				// },
 				crossDomain: true,
 				success: function(rs) {
 					if (rs.status == 200 || rs.message == '打印小票异常') {

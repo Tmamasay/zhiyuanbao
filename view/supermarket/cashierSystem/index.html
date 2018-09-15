@@ -4,8 +4,8 @@
         <!-- 会员登入 -->
         <div class="memberLogin border-gray border-bottom">
             <div class="ScanCodeinput" id="ScanCodeMemberInput">
-        		<input type="text" name="" class="layui-input" id="ScanCodeMember" placeholder="扫码添加会员信息">
-        	</div>
+                <input type="text" name="" class="layui-input" id="ScanCodeMember" placeholder="扫码添加会员信息">
+            </div>
             <div class="memberInfo" id="memberInfo" style="display: none;">
                 <script type="text/template" id="memberInfoList">
                     <ul>
@@ -19,9 +19,9 @@
         </div>
         <!-- 商品列表 -->
         <div class="shopGoodslist  padding-big">
-        	<div class="ScanCodeinput border-gray border-bottom padding-big-bottom">
-        		<input type="text" name="" class="layui-input" id="ScanCodeinput" placeholder="扫码添加商品">
-        	</div>
+            <div class="ScanCodeinput border-gray border-bottom padding-big-bottom">
+                <input type="text" name="" class="layui-input" id="ScanCodeinput" placeholder="扫码添加商品">
+            </div>
             <ul id="Goods">
                 <script type="text/template" id="GoodsList">
                     {{each list.goodsListData as value i}}
@@ -60,7 +60,8 @@
             </div>
             <br clear="all">
             <div class="shopGoodsBtn margin-big-top">
-                <button class="layui-btn layui-btn-primary layui-btn-radius layui-btn-lg button-active float-right margin-big-left" onclick="uplodOrder()">挂账</button>
+                <button class="layui-btn layui-btn-primary layui-btn-radius layui-btn-lg button-active float-right margin-big-left"onclick="uplodOrder()">挂账</button>
+                    
                 <button class="layui-btn layui-btn-primary layui-btn-radius layui-btn-lg float-right " onclick="reset()">清空</button>
             </div>
         </div>
@@ -71,7 +72,7 @@
             <div class="settlementMethod">
                 <ul>
                     <li class="active">现金</li>
-                    <li >二维码</li>
+                    <li>二维码</li>
                     <!--<li >余额</li>-->
                 </ul>
             </div>
@@ -81,7 +82,7 @@
                     <span>应收金额</span>
                     <span class="price ">¥ <font class="payPrice">0.00</font></span>
                 </div>
-                <div  class="scPrice margin-big-top border-gray border-bottom padding-big-top padding-big-bottom">
+                <div class="scPrice margin-big-top border-gray border-bottom padding-big-top padding-big-bottom">
                     <div>
                         <span>实收金额</span>
                         <input type="text" readonly="" name="" id="relTakePrice">
@@ -115,7 +116,8 @@
                 <!-- 结算 -->
                 <br clear="all" />
                 <div class="clearing_btn ">
-                    <button class="button" onclick="checkOut()" >结账</button>
+                    <button class="button" onclick="getCoupons()">使用优惠券</button>
+                    <button class="button" onclick="checkOut()">结账</button>
                     <!--<button class="button" onclick="viewToWord()">打印小票</button>-->
                 </div>
             </div>
@@ -126,7 +128,7 @@
                     <span class="price ">¥ <font class="payPrice">0.00</font></span>
                 </div>
                 <div class="scanCodeBg">
-                    <input type="text" name="" value="" class="layui-input" id="barCode"  placeholder="" style="opacity: 0">
+                    <input type="text" name="" value="" class="layui-input" id="barCode" placeholder="" style="opacity: 0">
                     <img src="../static/img/scanCodeList-bg.png">
                 </div>
             </div>
@@ -135,6 +137,30 @@
         </div>
     </div>
 </div>
+<!-- 优惠券表格 -->
+<table class="layui-table lay-table" id="layui_table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+        <col>
+    </colgroup>
+    <thead>
+        <tr>
+            <th width='30%'>类型</th>
+            <th>金额</th>
+            <th>有效期</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>抵用券</td>
+            <td>10</td>
+            <td>2019-11-29</td>
+            <td style="text-align: center;"><button class="layui-btn layui-btn-normal">使用</button></td>
+        </tr>
+    </tbody>
+</table>
 <script type="text/javascript" src="../static/js/barcode.js"></script>
 <script type="text/javascript" src="../view/supermarket/cashierSystem/cashierSystem.js"></script>
 <script type="text/javascript" src="../static/js/KeyboardVal.js"></script>

@@ -18,10 +18,10 @@ function init() {
 function getOrderList() {
 	//layer.load(2);
 	$.ajax({
-		type: "get",
+		type: "POST",
 		url: getHangOrderList,
 		xhrFields: {
-			withCredentials: true
+			withCredentials: false
 		},
 		crossDomain: true,
 		success: function(rs) {

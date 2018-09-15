@@ -10,6 +10,8 @@ var price, unitPrice, _unitPrice, realPrice, couponPrice = $('#couponPrice').tex
 	integralPrice = $('#integralPrice').text();
 var _realPrice, _payPrice, money;
 
+
+
 // 档区价格
 
 
@@ -37,9 +39,9 @@ function init() {
 	hangOrderDtata = null;
 	var offLine = sessionStorage.getItem('offLine');
 	console.log(offLine);
-	if(offLine == "null"){
+	if (offLine == "null") {
 		$('.settlementMethod li').addClass('disabled');
-	}else{
+	} else {
 		$('.settlementMethod li').removeClass('disabled');
 	}
 	keyId = ''
@@ -47,22 +49,22 @@ function init() {
 		hangOrderDtata = JSON.parse(sessionStorage.getItem("hangOrderData"));
 		keyId = sessionStorage.getItem("clearingId");
 	};
-	
+
 	//console.log(hangOrderDtata)
 	if (hangOrderDtata != null) {
 		isMemberVal = true;
 		$("#memberInfo").show();
 		getMemberInfo(hangOrderDtata[keyId].token);
-		
+
 		//console.log(hangOrderDtata[0].goodsList);
 		$.each(hangOrderDtata[keyId].goodsList, function (index, val) {
 			//console.log(val.num);
 			getGoodsList(val.gno, curk);
 			hangOrderNum.push(val.num);
 			curk++;
-			
+
 		});
-		
+
 	}
 }
 
@@ -77,7 +79,6 @@ $('#ScanCodeinput').bind('keypress', function (event) {
 		if (inputkey == "") {
 			return false;
 		}
-		//console.log(curk)
 		getGoodsList(inputkey, curk);
 		curk++;
 		//alert('你输入的内容为：' + $('#ScanCodeinput').val());
@@ -98,14 +99,14 @@ function getMemberInfo(inputkey) {
 	//console.log(inputkey);
 	var phone = inputkey;
 	$.ajax({
-		type: "get",
+		type: "POST",
 		url: getUser,
 		data: {
 			phone: phone
 		},
-		xhrFields: {
-			withCredentials: true
-		},
+		// xhrFields: {
+		// 	withCredentials: false
+		// },
 		crossDomain: true,
 		success: function (rs) {
 			if (rs.status == 200) {
@@ -116,8 +117,8 @@ function getMemberInfo(inputkey) {
 				renderMenberInfo(rs);
 				token = rs.data.token;
 				nick = rs.data.nick;
-			} else if(rs.status == 301){
-				layer.msg(rs.message,function () {
+			} else if (rs.status == 301) {
+				layer.msg(rs.message, function () {
 					$('#ScanCodeMemberInput').hide();
 					$('#ScanCodeMember').val('');
 					$("#memberInfo").show();
@@ -126,8 +127,7 @@ function getMemberInfo(inputkey) {
 					token = rs.data.token;
 					nick = rs.data.nick;
 				});
-			} 
-			else {
+			} else {
 				layer.msg(rs.message);
 			}
 		}
@@ -143,7 +143,7 @@ function renderMenberInfo(rs) {
 
 
 function getGoodsList(key, status) {
-	
+
 	if (key != '') {
 		if (status <= 0) {
 			gNo.push(key);
@@ -157,17 +157,17 @@ function getGoodsList(key, status) {
 				num = 0;
 			}
 		}
-		
+
 		//console.log(gNo,isgNo,status)
 		//return;
 		$.ajax({
-			type: "get",
+			type: "POST",
 			url: getGoods,
 			data: {
 				gno: key
 			},
 			xhrFields: {
-				withCredentials: true
+				withCredentials: false
 			},
 			crossDomain: true,
 			success: function (rs) {
@@ -191,28 +191,28 @@ function getGoodsList(key, status) {
 						rs.data.price = priceCount(rs.data.price, rs.data.num);
 						ListData.goodsListData.push(rs.data);
 					}
-					
-					renderGoodsList(ListData,isgNo);
+
+					renderGoodsList(ListData, isgNo);
 				} else {
 					layer.msg(rs.message)
 				}
 			}
 		})
 	}
-	
-	
+
+
 }
 
 
-function renderGoodsList(data,isgNo) {
+function renderGoodsList(data, isgNo) {
 
-	if(!isgNos){
+	if (!isgNos) {
 		console.log(data.goodsListData.reverse());
 	}
-	if(!isgNo){
+	if (!isgNo) {
 		console.log(data.goodsListData.reverse());
 	}
-	
+
 	isgNos = true;
 	var html = template('GoodsList', {
 		list: data
@@ -220,14 +220,15 @@ function renderGoodsList(data,isgNo) {
 	$("#Goods").html(html);
 	getAllotPrice(data.goodsListData);
 	getPrice(data.goodsListData);
-	
-	
+
+
 }
 
 function getAllotPrice(rs) {
 	//console.log(rs)
-	var _allotOnePrice = '', _allotTowPrice = '';
-	
+	var _allotOnePrice = '',
+		_allotTowPrice = '';
+
 	for (i in rs) {
 		if (rs[i].allotTitle == '一档区') {
 			_allotOnePrice += rs[i].price;
@@ -240,7 +241,7 @@ function getAllotPrice(rs) {
 	// var _allotOnePrice,_allotTowPrice;
 	$('#allotOnePrice').text(priceAcount(_allotOnePrice));
 	$('#allotTowPrice').text(priceAcount(_allotTowPrice));
-	
+
 }
 
 function priceAcount(rs) {
@@ -261,7 +262,7 @@ function addCount(el, num) {
 	var index = returnIndexof(ListData.goodsListData, id);
 	//console.log(index);
 	ListData.goodsListData[index].num = _curnum;
-	
+
 	//console.log(_curnum,num);
 	return _curnum;
 }
@@ -270,7 +271,7 @@ function minusCount(el, _num) {
 	_curnum = parseInt(_num) - 1;
 	var id = el.attr('data-goodsId');
 	var index = returnIndexof(ListData.goodsListData, id);
-	
+
 	if (_curnum <= 0) {
 		// console.log(el);
 		el.addClass('disabled');
@@ -278,7 +279,7 @@ function minusCount(el, _num) {
 		$('#realPrice').text('0.00');
 		$('.payPrice').text('0.00');
 		ListData.goodsListData[index].num = 0;
-		isgNos =false;
+		isgNos = false;
 	} else {
 		ListData.goodsListData[index].num = _curnum;
 	}
@@ -289,14 +290,14 @@ function minusCount(el, _num) {
 
 // 价格计算
 
-function priceCount(unitPrice, _curnum,el) {
-	
+function priceCount(unitPrice, _curnum, el) {
+
 	//console.log(unitPrice,_curnum)
 	_unitPrice = parseFloat(unitPrice) * _curnum;
-	if(el != undefined){
+	if (el != undefined) {
 		var id = el.attr('data-goodsId');
 		var index = returnIndexof(ListData.goodsListData, id);
-		console.log(index,ListData.goodsListData[index]);
+		console.log(index, ListData.goodsListData[index]);
 		ListData.goodsListData[index].price = _unitPrice.toFixed(2);
 	}
 	//console.log(key);
@@ -308,7 +309,7 @@ function realPriceCount(type, realPrice, unitPrice) {
 	if (unitPrice <= 0) {
 		return false;
 	}
-	
+
 	if (type == "add") {
 		_realPrice = (parseFloat(realPrice) + unitPrice).toFixed(2);
 	} else if (type == "minus") {
@@ -330,15 +331,15 @@ function realPriceCount(type, realPrice, unitPrice) {
 // 返回数组下标
 function returnSAIndexof(arr, value) {
 	var _curIndex;
-	
+
 	var a = arr; //为了增加方法扩展适应性。我这稍微修改了下
 	for (var i = 0; i < a.length; i++) {
 		if (a[i] == value) {
 			_curIndex = i;
 		}
-		
+
 	}
-	
+
 	//console.log(_curIndex);
 	return _curIndex;
 }
@@ -347,15 +348,15 @@ function returnSAIndexof(arr, value) {
 function returnIndexof(arr, value) {
 	//console.log(arr,value)
 	var _curIndex;
-	
+
 	var a = arr; //为了增加方法扩展适应性。我这稍微修改了下
 	for (var i = 0; i < a.length; i++) {
 		if (a[i].goodsId == value) {
 			_curIndex = i;
 		}
-		
+
 	}
-	
+
 	return _curIndex;
 }
 
@@ -411,12 +412,12 @@ function uplodOrder() {
 		layer.msg('请先添加商品');
 		return false;
 	}
-	
+
 	$('#Goods li').each(function (index, el) {
 		var goodsInfo = {
 			"gno": '0',
 			"goodsId": 0,
-			"fromSkuId":0,
+			"fromSkuId": 0,
 			"money": 0,
 			"num": 0,
 			"specValueId": 0
@@ -430,7 +431,7 @@ function uplodOrder() {
 		goodsList.push(goodsInfo);
 	})
 	//console.log(goodsList)
-	
+
 	var data = {
 		"goodsList": goodsList,
 		"sumMoney": _payPrice,
@@ -445,7 +446,7 @@ function uplodOrder() {
 		contentType: "application/json",
 		dataType: 'json',
 		xhrFields: {
-			withCredentials: true
+			withCredentials: false
 		},
 		crossDomain: true,
 		success: function (rs) {
@@ -464,36 +465,38 @@ function uplodOrder() {
 
 function checkOut() {
 	console.log(ischeckOut);
-	
-	if(ischeckOut){
+
+	if (ischeckOut) {
 		return false;
 	}
-	
+
 	var goodsList = [];
 	var _payPrice = $('#payPrice').text();
 	var _relTakePrice = $('#relTakePrice').val();
-	
+
 	if (parseFloat(_payPrice) <= 0) {
 		layer.msg('请先添加商品');
 		ischeckOut = false;
 		return false;
 	}
-	
+
 	if (_relTakePrice == '') {
 		layer.msg('实收金额不能为空');
 		ischeckOut = false;
 		return false;
-	}else if(parseFloat(_relTakePrice) < parseFloat(_payPrice)){
+	} else if (parseFloat(_relTakePrice) < parseFloat(_payPrice)) {
 		layer.msg('实收金额不能小于应收金额');
 		ischeckOut = false;
 		return false;
 	}
-	var index = layer.load(3,{shade: [0.8,'#000'],});
+	var index = layer.load(3, {
+		shade: [0.8, '#000'],
+	});
 	$('#Goods li').each(function (index, el) {
 		var goodsInfo = {
 			"gno": '0',
 			"goodsId": 0,
-			"fromSkuId":0,
+			"fromSkuId": 0,
 			"money": 0,
 			"num": 0,
 			"specValueId": 0,
@@ -509,23 +512,23 @@ function checkOut() {
 		goodsList.push(goodsInfo);
 	})
 	//console.log(goodsList)
-	
+
 	var data = {
 		"goodsList": goodsList,
 		"sumMoney": _payPrice,
 		"token": token,
 		"nick": nick
 	}
-	
+	//现金支付
 	ischeckOut = true;
 	$.ajax({
-		type: "post",
+		type: "POST",
 		url: payByCash,
 		data: JSON.stringify(data),
 		contentType: "application/json",
 		dataType: 'json',
 		xhrFields: {
-			withCredentials: true
+			withCredentials: false
 		},
 		crossDomain: true,
 		success: function (rs) {
@@ -545,17 +548,17 @@ function checkOut() {
 
 
 $("#barCode").startListen({
-	barcodeLen : 18,
-	letter : true,
-	number : true,
-	check  : true,
-	show : function(code){
+	barcodeLen: 18,
+	letter: true,
+	number: true,
+	check: true,
+	show: function (code) {
 		getBarCode(code);
 	}
 });
 
-function getBarCode(code){
-	if(ischeckOut){
+function getBarCode(code) {
+	if (ischeckOut) {
 		return false;
 	}
 	var goodsList = [];
@@ -564,12 +567,12 @@ function getBarCode(code){
 		layer.msg('请先添加商品');
 		return false;
 	}
-	
+
 	$('#Goods li').each(function (index, el) {
 		var goodsInfo = {
 			"gno": '0',
 			"goodsId": 0,
-			"fromSkuId":0,
+			"fromSkuId": 0,
 			"money": 0,
 			"num": 0,
 			"specValueId": 0,
@@ -585,19 +588,19 @@ function getBarCode(code){
 		goodsList.push(goodsInfo);
 	})
 	//console.log(goodsList)
-	
+
 	var data = {
-			"goodsList": goodsList,
-			"sumMoney": _payPrice,
-			"token": token,
-			"nick": nick
+		"goodsList": goodsList,
+		"sumMoney": _payPrice,
+		"token": token,
+		"nick": nick
 	}
-	
-	
+
+	//扫码支付
 	$.ajax({
 		type: "post",
-		url: payByScan +"?barcode=" + code,
-		data:JSON.stringify(data),
+		url: payByScan + "?barcode=" + code,
+		data: JSON.stringify(data),
 		contentType: "application/json",
 		dataType: 'json',
 		xhrFields: {
@@ -625,6 +628,56 @@ function getBarCode(code){
 }
 
 
+//获得优惠券
+function getCoupons() {
+	if (!isMemberVal) {
+		layer.msg('请先添加会员信息');
+		return false;
+	}
+	var index = layer.load();
+	console.log(token);
+	var postData = {
+		"page":"1",
+		"pageSize":10,
+		"token":token
+	};
+	//查询用户优惠券
+	$.ajax({
+		type: "POST",
+		url: userCoupons,
+		data:{
+			page:"1",
+			pageSize:10,
+			token:token
+		},
+		// contentType: "application/json",
+		// dataType: 'json',
+		xhrFields: {
+			withCredentials: false
+		},
+		crossDomain: true,
+		success: function (rs) {
+			if (rs.status == 200) {
+				if(rs.data.total == 0){
+					layer.msg('当前用户暂无可使用优惠券',{time: 3000});
+					layer.close(index);
+					return false
+				};
+				layer.close(index);
+				layer.open({
+					type: 1,
+					title: '使用优惠券',
+					content: $('#layui_table'),
+					area: ['800px', '600px']
+				});
+			} else {
+				layer.close(index);
+				layer.msg(rs.message)
+			}
+		}
+	});
+
+}
 
 $('body').on('click', '.add', function (e) {
 	e.preventDefault();
@@ -639,18 +692,17 @@ $('body').on('click', '.add', function (e) {
 		$(this).siblings('.minus').removeClass('disabled');
 	} else {
 		unitPrice = $(this).parent().siblings().text().substring(1) / num;
-		
+
 	}
-	
+
 	if (allotType == '一档区') {
 		$('#allotOnePrice').text((parseFloat(unitPrice) + parseFloat(allotOnePrice)).toFixed(2));
 	} else {
 		$('#allotTowPrice').text((parseFloat(unitPrice) + parseFloat(allotTowPrice)).toFixed(2));
-	}
-	;
-	
+	};
+
 	$(this).siblings(".number").text(addCount(_slef, num))
-	$(this).parent().siblings().text("¥ " + priceCount(unitPrice, _curnum,_slef));
+	$(this).parent().siblings().text("¥ " + priceCount(unitPrice, _curnum, _slef));
 	realPriceCount("add", realPrice, unitPrice);
 })
 
@@ -668,19 +720,18 @@ $('body').on('click', '.minus', function (e) {
 		unitPrice = $(this).parent().siblings().text().substring(1) / num;
 	}
 	$(this).siblings(".number").text(minusCount(_slef, num))
-	$(this).parent().siblings().text("¥ " + priceCount(unitPrice, _curnum,_slef));
-	
+	$(this).parent().siblings().text("¥ " + priceCount(unitPrice, _curnum, _slef));
+
 	if (allotType == '一档区') {
 		$('#allotOnePrice').text((parseFloat(allotOnePrice) - parseFloat(unitPrice)).toFixed(2));
 	} else {
 		$('#allotTowPrice').text((parseFloat(allotTowPrice) - parseFloat(unitPrice)).toFixed(2));
-	}
-	;
+	};
 	realPriceCount("minus", realPrice, unitPrice);
 });
 
 
-$('.settlementMethod li').on('click', function(e){
+$('.settlementMethod li').on('click', function (e) {
 	e.preventDefault();
 	if (!isMemberVal) {
 		layer.msg('请先添加会员信息');
@@ -689,13 +740,13 @@ $('.settlementMethod li').on('click', function(e){
 	var type = $(this).index();
 	$(this).addClass('active');
 	$(this).siblings().removeClass('active');
-	if(type == 0){
-		
+	if (type == 0) {
+
 		$('.cashList').show();
 		$('.scanCodeList').hide();
 		$('#barCode').blur();
 	}
-	if(type == 1){
+	if (type == 1) {
 		ischeckOut = false;
 		$('.cashList').hide();
 		$('.scanCodeList').show();
@@ -711,13 +762,10 @@ $('body').keyup(function () {
 		if (event.ctrlKey && event.keyCode == 112) {
 			uplodOrder();
 		}
-		
+
 		if (event.ctrlKey && event.keyCode == 113) {
 			uplodOrder();
 		}
-		
+
 	}
 });
-
-
-

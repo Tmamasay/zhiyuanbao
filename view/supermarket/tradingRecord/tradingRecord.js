@@ -114,10 +114,10 @@ function getOrderList(_curr, payWay, beginTime, endTime) {
 		"endTime": endTime
 	}
 	$.ajax({
-		type: "get",
+		type: "POST",
 		url: findPage,
 		xhrFields: {
-			withCredentials: true
+			withCredentials: false
 		},
 		data: data,
 		crossDomain: true,

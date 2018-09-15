@@ -8,22 +8,23 @@ var turl = "http://192.168.0.51:8888";
 /*接口api*/
 
 
-var getUser = turl + "/cashier/cashier/getUser"; // 获取会员信息
-var getGoods = turl + "/cashier/cashier/getGoods"; // 获取商品信息
-var payByCash = turl + "/cashier/cashier/payByCash"; // 现金支付
-var payByScan = turl + "/cashier/cashier/payByScan"; // 扫码支付
+var getUser = turl + "/wc/cashier/getUser"; // 获取会员信息
+var getGoods = turl + "/wc/cashier/getWcGoods"; // 获取商品信息
+var payByCash = turl + "/wc/cashier/pay/cash"; // 现金支付
+var payByScan = turl + "/wc/cashier/pay/scan"; // 扫码支付
+var userCoupons = turl + "/wc/cashier/getVoucherList";//获取用户优惠券列表
 
-var saveHangOrder = turl + "/cashier/hangOrder/saveHangOrder"; // 保存挂单
-var getLoginEmployee = turl + "/cashier/login/getLoginEmployee"; //获取当前登录员工
-var updateStatus = turl + "/cashier/login/updateStatus"; //上传员工 当班状态
+var saveHangOrder = turl + "/hang/wc/bill/save"; // 保存挂单
+var getLoginEmployee = turl + "/auth/getLoginEmployee"; //获取当前登录员工
+var updateStatus = turl + "/auth/updateImprestCash"; //上传员工 当班状态 更新备用金
 var getCheckOut = turl + "/cashier/login/getCheckOut"; //下班时获取收银详情
 var logout = turl + "/cashier/login/logout"; // 下班
 var authorize = turl + "/cashier/login/authorize"; // 下班授权
 
 var findOrderDetail = turl + "/cashier/order/findOrderDetail"; // 查询订单详情
-var findPage = turl + "/cashier/order/findPage"; // 查询订单详情
+var findPage = turl + "/wc/order/findPage"; // 查询订单详情
 var deleteOrder = turl + "/cashier/order/delete"; //删除订单
-var getHangOrderList = turl + "/cashier/hangOrder/getHangOrderList"; //获取挂单数据
+var getHangOrderList = turl + "/hang/wc/bill/findAll"; //获取挂单数据
 var removeHangOrder = turl + "/cashier/hangOrder/removeHangOrder"; //删除挂单数据
 
 
@@ -54,7 +55,7 @@ var printIntegral = turl + "/cashier/print/integral"; //打印积分小票
 
 
 //获取当前登录的 门店账号‘
-var getLoginStore = turl + "/cashier/login/getLoginStore"; //打印积分小票
+var getLoginStore = turl + "/auth/getLoginWcStore";
 
 
 function queryMenberIFFnfo(token, callback) {

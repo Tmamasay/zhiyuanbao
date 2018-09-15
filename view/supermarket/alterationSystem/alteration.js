@@ -16,10 +16,10 @@ function getOrderList(_curr) {
 		"endTime": format(new Date())
 	}
 	$.ajax({
-		type: "get",
+		type: "POST",
 		url: findPage,
 		xhrFields: {
-			withCredentials: true
+			withCredentials: false
 		},
 		data: data,
 		crossDomain: true,
@@ -105,10 +105,10 @@ function getLogout() {
 // 获取店铺信息
 function getStore(){
 	$.ajax({
-		type: "get",
+		type: "POST",
 		url: getLoginStore,
 		xhrFields: {
-			withCredentials: true
+			withCredentials: false
 		},
 		crossDomain: true,
 		success: function(rs) {

@@ -7,7 +7,7 @@ if (sessionStorage.getItem("storeId") != null) {
     $('.lo_employee').show();
     $('.lo_title').find('font').text('员工登录')
     $('.lo_title').find('span').show();
-}
+};
 //判断是密码还是验证码
 $('.lo_way span').on('click', function () {
     $(this).addClass('bg-blue').siblings().removeClass('bg-blue');
@@ -20,13 +20,13 @@ $('.lo_way span').on('click', function () {
         loginType = 1
     }
     $('#' + _slef).addClass('active');
-})
+});
 
 //门店注销 
 $('.back_btn').on('click', function (e) {
     e.preventDefault()
     $.ajax({
-        type: "get",
+        type: "post",
         url: turl + "/cashier/login/storeLogout",
         xhrFields: {
             withCredentials: true
@@ -52,7 +52,7 @@ $('.back_btn').on('click', function (e) {
             }
         }
     });
-})
+});
 
 // 门店登录 
 function signlogStore() {
@@ -74,17 +74,17 @@ function signlogStore() {
             "password": storePwd,
             "loginType": loginType,
         };
-    }
+    };
 
     if (phone == "" || storePwd == "") {
         layer.msg("请填写信息");
         return;
-    }
+    };
 
     if (!myreg.test(phone)) {
         layer.msg("请输入有效的手机号！");
         return false;
-    }
+    };
     $.ajax({
         type: "POST",
         url: turl + "/auth/store/login",
@@ -100,19 +100,26 @@ function signlogStore() {
                 $('#signlogStore').attr({
                     'disabled': "disabled"
                 });
-                layer.confirm('门店登录成功，是否同步数据', {
-                    btn: ['同步', '否'],
-                    closeBtn: 0
-                }, function () {
-                    inStepData(phone);
-                }, function () {
-                    layer.closeAll();
-                    sessionStorage.setItem("storeId", phone);
-                    $('.lo_title').find('font').text('员工登录')
-                    $('.lo_store').hide();
-                    $('.lo_employee').show();
-                    $('.lo_title').find('span').show();
-                })
+                layer.closeAll();
+                sessionStorage.setItem("storeId", phone);
+                $('.lo_title').find('font').text('员工登录')
+                $('.lo_store').hide();
+                $('.lo_employee').show();
+                $('.lo_title').find('span').show();
+                // ---------取消同步数据功能----------
+                // layer.confirm('门店登录成功，是否同步数据', {
+                //     btn: ['同步', '否'],
+                //     closeBtn: 0
+                // }, function () {
+                //     inStepData(phone);
+                // }, function () {
+                //     layer.closeAll();
+                //     sessionStorage.setItem("storeId", phone);
+                //     $('.lo_title').find('font').text('员工登录')
+                //     $('.lo_store').hide();
+                //     $('.lo_employee').show();
+                //     $('.lo_title').find('span').show();
+                // })
 
             } else if (rs.status == 201) {
                 sessionStorage.setItem("offLine", "null");
@@ -136,7 +143,7 @@ function signlogStore() {
 
         }
     });
-}
+};
 //同步数据
 function inStepData(phone) {
     layer.config({
@@ -144,7 +151,7 @@ function inStepData(phone) {
     })
     var index = layer.load(2)
     $.ajax({
-        type: "get",
+        type: "post",
         url: turl + "/cashier/synchronize/data",
         xhrFields: {
             withCredentials: true
@@ -172,7 +179,7 @@ function inStepData(phone) {
             }
         }
     })
-}
+};
 
 // 修复员工 /注销员工
 $('.repair_btn').on('click', function (e) {
@@ -184,14 +191,14 @@ $('.repair_btn').on('click', function (e) {
     }
 
     $.ajax({
-        type: "get",
-        url: turl + "/cashier/login/logout",
+        type: "POST",
+        url: turl + "/auth/employee/logout",
         data: {
             "username": username
         },
-        xhrFields: {
-            withCredentials: true
-        },
+        // xhrFields: {
+        //     withCredentials: false
+        // },
         crossDomain: true,
         success: function (rs) {
             if (rs.status == "200") {
@@ -207,7 +214,7 @@ $('.repair_btn').on('click', function (e) {
         }
     })
 
-})
+});
 
 //员工登录
 function signlog() {
@@ -222,13 +229,13 @@ function signlog() {
     })
     $.ajax({
         type: "POST",
-        url: turl + "/cashier/login/login",
+        url: turl + "/auth/employee/login",
         data: {
             "username": username,
             "password": pwd
         },
         xhrFields: {
-            withCredentials: true
+            withCredentials: false
         },
         crossDomain: true,
         success: function (rs) {
@@ -251,7 +258,7 @@ function signlog() {
             //layer.msg(rs.msg);
         }
     })
-}
+};
 
 // 更新系统
 $('.update_btn').on('click', function () {
@@ -279,7 +286,5 @@ $('.update_btn').on('click', function () {
 
         }
     })
-
-
     //window.open(turl + '/cashier-reboot/reboot.do')
 })
