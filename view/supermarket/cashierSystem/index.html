@@ -60,8 +60,9 @@
             </div>
             <br clear="all">
             <div class="shopGoodsBtn margin-big-top">
-                <button class="layui-btn layui-btn-primary layui-btn-radius layui-btn-lg button-active float-right margin-big-left"onclick="uplodOrder()">挂账</button>
-                    
+                <button class="layui-btn layui-btn-primary layui-btn-radius layui-btn-lg button-active float-right margin-big-left"
+                    onclick="uplodOrder()">挂账</button>
+
                 <button class="layui-btn layui-btn-primary layui-btn-radius layui-btn-lg float-right " onclick="reset()">清空</button>
             </div>
         </div>
@@ -147,18 +148,22 @@
     <thead>
         <tr>
             <th width='30%'>类型</th>
-            <th>金额</th>
+            <th width='20%'>金额</th>
             <th>有效期</th>
             <th>操作</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td>抵用券</td>
-            <td>10</td>
-            <td>2019-11-29</td>
-            <td style="text-align: center;"><button class="layui-btn layui-btn-normal">使用</button></td>
-        </tr>
+    <tbody id="lay_tbody">
+        <script type="text/template" id="couponsList">
+        {{each list as value i}}
+            <tr>
+                <td>{{value.name}}</td>
+                <td>{{value.money}}</td>
+                <td>{{value.time}}</td>
+                <td style="text-align: center;"><button class="layui-btn layui-btn-normal" onclick="selectCoupons({{value.id}})">使用</button></td>
+            </tr>
+         {{/each}}
+    </script>
     </tbody>
 </table>
 <script type="text/javascript" src="../static/js/barcode.js"></script>

@@ -337,7 +337,6 @@ function returnSAIndexof(arr, value) {
 		if (a[i] == value) {
 			_curIndex = i;
 		}
-
 	}
 
 	//console.log(_curIndex);
@@ -433,10 +432,10 @@ function uplodOrder() {
 	//console.log(goodsList)
 
 	var data = {
-		"goodsList": goodsList,
-		"sumMoney": _payPrice,
+		"wcBillOptionList": goodsList,
+		// "sumMoney": _payPrice,
 		"token": token,
-		"nick": nick
+		// "nick": nick
 	}
 	//console.log(data)
 	$.ajax({
@@ -514,11 +513,12 @@ function checkOut() {
 	//console.log(goodsList)
 
 	var data = {
-		"goodsList": goodsList,
-		"sumMoney": _payPrice,
+		"wcBillOptionList": goodsList,
+		// "sumMoney": _payPrice,
 		"token": token,
-		"nick": nick
+		// "nick": nick
 	}
+	console.log(goodsList);
 	//现金支付
 	ischeckOut = true;
 	$.ajax({
@@ -604,7 +604,7 @@ function getBarCode(code) {
 		contentType: "application/json",
 		dataType: 'json',
 		xhrFields: {
-			withCredentials: true
+			withCredentials: false
 		},
 		crossDomain: true,
 		success: function (rs) {
@@ -627,7 +627,6 @@ function getBarCode(code) {
 	});
 }
 
-
 //获得优惠券
 function getCoupons() {
 	if (!isMemberVal) {
@@ -635,20 +634,14 @@ function getCoupons() {
 		return false;
 	}
 	var index = layer.load();
-	console.log(token);
-	var postData = {
-		"page":"1",
-		"pageSize":10,
-		"token":token
-	};
 	//查询用户优惠券
 	$.ajax({
 		type: "POST",
 		url: userCoupons,
-		data:{
-			page:"1",
-			pageSize:10,
-			token:token
+		data: {
+			page: "1",
+			pageSize: 10,
+			token: token
 		},
 		// contentType: "application/json",
 		// dataType: 'json',
@@ -658,17 +651,21 @@ function getCoupons() {
 		crossDomain: true,
 		success: function (rs) {
 			if (rs.status == 200) {
-				if(rs.data.total == 0){
-					layer.msg('当前用户暂无可使用优惠券',{time: 3000});
+				if (rs.data.total == 0) {
+					layer.msg('当前用户暂无可使用优惠券', {
+						time: 3000
+					});
 					layer.close(index);
 					return false
 				};
+				//初始化优惠券表格
+				drawing()
 				layer.close(index);
 				layer.open({
 					type: 1,
 					title: '使用优惠券',
 					content: $('#layui_table'),
-					area: ['800px', '600px']
+					area: ['500px', '300px']
 				});
 			} else {
 				layer.close(index);
@@ -676,8 +673,38 @@ function getCoupons() {
 			}
 		}
 	});
-
 }
+
+
+function drawing() {
+	var data = [{
+		id: 1,
+		name: '一张抵用券',
+		money: '100',
+		time: '2019/10/25'
+	}, {
+		id: 2,
+		name: '又一张抵用券',
+		money: '200',
+		time: '2019/10/25'
+	}, {
+		id: 3,
+		name: '又又一张抵用券',
+		money: '300',
+		time: '2019/10/25'
+	}];
+	var html = template('couponsList', {
+		list: data
+	});
+	$("#lay_tbody").html(html);
+}
+//使用优惠券
+function selectCoupons(id) {
+	//关闭页面层
+	layer.closeAll('page');
+	//获取选中优惠券信息
+	console.log(id);
+};
 
 $('body').on('click', '.add', function (e) {
 	e.preventDefault();
